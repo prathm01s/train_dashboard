@@ -1,0 +1,209 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(180deg, #f8f1f5, #e6e9f0);
+    color: #4a4a4a;
+    margin: 0;
+}
+
+.header {
+    background: linear-gradient(90deg, #d4a5a5, #b392ac);
+    padding: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.train-svg {
+    animation: slideInRight 1s ease forwards;
+}
+
+#train .wheel {
+    transform-origin: center;
+}
+
+#train.moving .wheel {
+    animation: spin 2s linear infinite;
+}
+
+#train.moving .smoke {
+    animation: puff 1.5s ease-in-out infinite;
+}
+
+#train.alert {
+    animation: shake 0.3s ease;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes puff {
+    0% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 0.8; transform: translateY(-10px); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: #6d8299;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.controls .btn-primary {
+    background-color: #d4a5a5;
+    border-color: #d4a5a5;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.controls .btn-primary:hover {
+    background-color: #b392ac;
+    border-color: #b392ac;
+    transform: translateY(-2px);
+}
+
+.controls .form-select {
+    background-color: #ffffff;
+    border-color: #b392ac;
+    color: #4a4a4a;
+    font-family: 'Poppins', sans-serif;
+    max-width: 200px;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.table th {
+    background-color: #d4a5a5;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem;
+}
+
+.table td {
+    vertical-align: middle;
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.table tbody tr {
+    height: 50px;
+    animation: slideUp 0.6s ease forwards;
+    animation-delay: calc(var(--row-index) * 0.1s);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.table tbody tr:hover {
+    background-color: #f9ecec;
+    transform: translateY(-2px);
+}
+
+.table td.alert-cell {
+    animation: glow 1s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% { background-color: #ffffff; }
+    50% { background-color: #e57373; }
+    100% { background-color: #ffffff; }
+}
+
+.chart-container {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease;
+}
+
+.footer {
+    background-color: #b392ac;
+    color: #ffffff;
+    padding: 1rem 0;
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.alert-banner {
+    position: fixed;
+    top: -100px;
+    left: 0;
+    right: 0;
+    background: #d4a5a5;
+    color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+    transition: top 0.5s ease;
+    z-index: 1000;
+    font-size: 1rem;
+}
+
+.alert-banner.show {
+    top: 0;
+}
+
+@media (max-width: 992px) {
+    .header h1 { font-size: 2rem; }
+    .train-svg svg { width: 120px; height: 48px; }
+    .table { width: 95%; }
+    .chart-container { max-width: 500px; }
+    .controls { flex-direction: column; align-items: stretch; }
+    .controls .form-select, .controls .btn { max-width: none; }
+}
+
+@media (max-width: 576px) {
+    .header { padding: 1.5rem 0; height: 100px; }
+    .header h1 { font-size: 1.75rem; }
+    .train-svg svg { width: 100px; height: 40px; }
+    .table { font-size: 0.8rem; }
+    .chart-container { max-width: 100%; padding: 1rem; }
+    .chart-container canvas { height: 300px !important; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

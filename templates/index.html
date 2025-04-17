@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train System Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="display-4">Train System Monitoring</h1>
+            <div class="d-flex align-items-center gap-2">
+                <button onclick="history.back()" class="btn btn-primary">Back</button>
+                <div class="train-svg">
+                    <svg id="train" width="150" height="60" viewBox="0 0 150 60">
+                        <rect x="30" y="10" width="80" height="40" rx="10" fill="#e8b4b8"/>
+                        <circle cx="50" cy="30" r="8" fill="#ffffff"/>
+                        <circle cx="90" cy="30" r="8" fill="#ffffff"/>
+                        <circle class="wheel" cx="45" cy="55" r="8" fill="#3c3c3c"/>
+                        <circle class="wheel" cx="65" cy="55" r="8" fill="#3c3c3c"/>
+                        <circle class="wheel" cx="85" cy="55" r="8" fill="#3c3c3c"/>
+                        <circle class="wheel" cx="105" cy="55" r="8" fill="#3c3c3c"/>
+                        <rect x="110" y="5" width="10" height="15" fill="#8e7b9b"/>
+                        <circle class="smoke" cx="115" cy="5" r="5" fill="#f5f5f5" opacity="0"/>
+                        <rect x="0" y="58" width="150" height="2" fill="#999999" stroke-dasharray="5,5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="container my-5">
+        <section class="mb-4">
+            <div class="controls mb-3 d-flex flex-wrap gap-2">
+                <button id="refresh-btn" class="btn btn-primary">Refresh Data</button>
+                <button id="toggle-chart-btn" class="btn btn-primary">Hide Chart</button>
+                <a href="/data" class="btn btn-primary">View Data</a>
+                <select id="device-filter" class="form-select w-auto">
+                    <option value="all">All Devices</option>
+                    <option value="trainESP">TrainESP</option>
+                    <option value="environmentESP">EnvironmentESP</option>
+                </select>
+            </div>
+        </section>
+        <section class="mb-5">
+            <h2 class="section-title">Sensor Data</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Collection</th>
+                            <th>Value</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table"></tbody>
+                </table>
+                <p id="no-data-message" class="text-center mt-3" style="display: none;">No data matches your criteria.</p>
+            </div>
+        </section>
+        <section id="chart-section">
+            <h2 class="section-title">Sensor Trends</h2>
+            <div class="chart-container">
+                <canvas id="sensorChart"></canvas>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Train System Dashboard</p>
+        </div>
+    </footer>
+    <div id="alert-banner" class="alert-banner"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
