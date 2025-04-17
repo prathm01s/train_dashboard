@@ -1,23 +1,21 @@
 /*
  * ESP32 MQTT Publisher for Train System Dashboard
  * Publishes random sensor data to MQTT topics defined in app.py
- * Supports WPA2-Enterprise WiFi (e.g., university networks) using esp_eap_client
- * Compatible with broker.hivemq.com and Flask server
+ * Uses WPA2-Personal WiFi (SSID and password)
+ * Compatible with local Mosquitto broker and Flask server
  */
 
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include <esp_eap_client.h> // Updated library for WPA2-Enterprise
 
-// WiFi credentials for WPA2-Enterprise
-const char* ssid = "wifi@iiith"; // Replace with your university WiFi SSID (e.g., "eduroam")
-const char* wifi_username = "prathmesh.sharma@students.iiit.ac.in"; // Replace with your university username (e.g., "jdoe123@university.edu")
-const char* wifi_password = "Msiay123/?-"; // Replace with your university password
+// WiFi credentials for WPA2-Personal
+const char* ssid = "Doraemon";
+const char* password = "helicopter";
 
-// MQTT Broker settings
-const char* mqtt_server = "broker.hivemq.com";
+// MQTT Broker settings (local Mosquitto)
+const char* mqtt_server = "192.168.244.143"; // Replace with your laptop's IP, e.g., "192.168.1.100"
 const int mqtt_port = 1883;
-const char* mqtt_client_id = "ESP32_TrainSystem";
+const char* mqtt_client_id = "ESP32_TrainSystem"; // Fixed client ID
 
 // MQTT Topics from app.py
 const char* mqtt_topics[] = {
@@ -42,16 +40,29 @@ PubSubClient client(espClient);
 
 // Reconnect to MQTT broker
 void reconnect() {
-  while (!client.connected()) {
-    Serial.print("Attempting MQTT connection...");
+  int attempts = 0;
+  while (!client.connected() && attempts < 5) {
+    Serial.print("Attempting MQTT connection to ");
+    Serial.print(mqtt_server);
+    Serial.print(":");
+    Serial.print(mqtt_port);
+    Serial.print(" with client ID ");
+    Serial.println(mqtt_client_id);
     if (client.connect(mqtt_client_id)) {
-      Serial.println("connected");
+      Serial.println("MQTT connected");
     } else {
-      Serial.print("failed, rc=");
+      Serial.print("MQTT failed, rc=");
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      delay(5000);
+      Serial.print(" WiFi status=");
+      Serial.println(WiFi.status());
+      Serial.println("Trying again in 10 seconds");
+      delay(10000); // Wait 10 seconds
+      attempts++;
     }
+  }
+  if (!client.connected()) {
+    Serial.println("MQTT connection failed after 5 attempts, halting");
+    while (true); // Halt for debugging
   }
 }
 
@@ -81,30 +92,27 @@ String generateSensorData(const char* topic) {
 void setup() {
   Serial.begin(115200);
 
-  // Connect to WiFi (WPA2-Enterprise)
+  // Connect to WiFi (WPA2-Personal)
   Serial.print("Connecting to ");
   Serial.println(ssid);
+  WiFi.begin(ssid, password);
 
-  // Configure WPA2-Enterprise
-  WiFi.disconnect(true); // Clear previous WiFi settings
-  WiFi.mode(WIFI_STA);   // Station mode
-
-  // Set EAP identity, username, and password
-  esp_eap_client_set_identity((uint8_t *)wifi_username, strlen(wifi_username));
-  esp_eap_client_set_username((uint8_t *)wifi_username, strlen(wifi_username));
-  esp_eap_client_set_password((uint8_t *)wifi_password, strlen(wifi_password));
-
-  // Start WiFi connection with WPA2-Enterprise (PEAP-MSCHAPv2)
-  WiFi.begin(ssid, WPA2_AUTH_PEAP, "", wifi_username, wifi_password);
-
-  while (WiFi.status() != WL_CONNECTED) {
+  int attempts = 0;
+  while (WiFi.status() != WL_CONNECTED && attempts < 20) {
     delay(500);
-    Serial.print(".");
+    Serial.print("WiFi status: ");
+    Serial.println(WiFi.status()); // Print status code
+    attempts++;
   }
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("WiFi connected");
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+  } else {
+    Serial.println("WiFi connection failed");
+    while (true); // Halt for debugging
+  }
 
   // Set MQTT server
   client.setServer(mqtt_server, mqtt_port);
@@ -115,6 +123,7 @@ void setup() {
 
 void loop() {
   if (!client.connected()) {
+    Serial.println("Reconnecting...");
     reconnect();
   }
   client.loop();
@@ -130,5 +139,5 @@ void loop() {
     delay(100); // Small delay to avoid overwhelming the broker
   }
 
-  delay(5000); // Publish every 5 seconds
+  delay(1000); // Publish every 15 seconds
 }
