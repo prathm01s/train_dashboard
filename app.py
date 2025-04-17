@@ -17,7 +17,7 @@ mongo_uri = "mongodb+srv://prathmeshsharma101:tlasaay123@callibration.lekgwp4.mo
 mongo_client = MongoClient(mongo_uri)
 db = mongo_client.train_system
 
-# Define collections for each MQTT topic and aggregates
+# Define collections for each MQTT topic
 collections = {
     "train_accelerometer": db.train_accelerometer,
     "train_ultra": db.train_ultra,
@@ -33,51 +33,67 @@ collections = {
     "tof1_pos2": db.tof1_pos2,
     "tof1_pos3": db.tof1_pos3,
     "tof1_pos4": db.tof1_pos4,
+    "tof2_pos1": db.tof2_pos1,
+    "tof2_pos2": db.tof2_pos2,
+    "tof2_pos3": db.tof2_pos3,
+    "tof2_pos4": db.tof2_pos4,
+    "sw420_scene1": db.sw420_scene1,
+    "sw420_scene2": db.sw420_scene2,
+    "sw420_scene3": db.sw420_scene3,
+    "sw420_scene4": db.sw420_scene4,
+    "sw420_scene5": db.sw420_scene5,
+    "sw420_scene6": db.sw420_scene6,
     "ml_metrics": db.ml_metrics
 }
 
 # MQTT Configuration
-MQTT_BROKER = "127.0.0.1"  # Replace with your laptop's IP, e.g., "192.168.244.143"
+MQTT_BROKER = "127.0.0.1"
 MQTT_PORT = 1883
 MQTT_TOPICS = [
     "train_accelerometer", "train_ultra", "train_infra",
     "tof1", "tof2", "dht", "sw420", "env_ultra",
-    "tof1_pos1", "tof1_pos2", "tof1_pos3", "tof1_pos4"
+    "tof1_pos1", "tof1_pos2", "tof1_pos3", "tof1_pos4",
+    "tof2_pos1", "tof2_pos2", "tof2_pos3", "tof2_pos4",
+    "sw420_scene1", "sw420_scene2", "sw420_scene3",
+    "sw420_scene4", "sw420_scene5", "sw420_scene6"
 ]
 
 # Local cache for latest 100 entries per collection
 local_cache = {topic: [] for topic in collections.keys()}
 
-# Windows for anomaly detection
-windows = {col: deque(maxlen=10) for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4']}
+# Sliding windows for anomaly detection (10 readings)
+windows = {col: deque(maxlen=10) for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
+                                             'tof2_pos1', 'tof2_pos2', 'tof2_pos3', 'tof2_pos4']}
 
-# Load ML models and thresholds
-models = {}
-thresholds = {}
-for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4']:
+# Load pre-trained models and thresholds from ml.py output
+autoencoder_models = {}
+autoencoder_thresholds = {}
+for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
+            'tof2_pos1', 'tof2_pos2', 'tof2_pos3', 'tof2_pos4']:
     try:
-        models[col] = tf.keras.models.load_model(f'models/{col}_model')
+        autoencoder_models[col] = tf.keras.models.load_model(f'models/{col}_model')
         with open(f'models/{col}_threshold.json', 'r') as f:
-            thresholds[col] = json.load(f)['threshold']
+            autoencoder_thresholds[col] = json.load(f)['threshold']
     except Exception as e:
-        print(f"Error loading model for {col}: {e}")
-        models[col] = None
-        thresholds[col] = None
+        print(f"Error loading autoencoder model for {col}: {e}")
+        autoencoder_models[col] = None
+        autoencoder_thresholds[col] = None
 
+# Load sw420 classifier
+try:
+    sw420_classifier = tf.keras.models.load_model('models/sw420_classifier')
+except Exception as e:
+    print(f"Error loading sw420 classifier: {e}")
+    sw420_classifier = None
+
+# Function to check anomalies using autoencoder
 def check_anomaly(sequence, model, threshold):
-    if model is None or threshold is None:
-        return False
     sequence = np.array(sequence).reshape(1, 10, 1)
-    reconstructed = model.predict(sequence)
-    error = np.abs(sequence[0, -1, 0] - reconstructed[0, -1, 0])
+    reconstructed = model.predict(sequence, verbose=0)
+    error = np.mean(np.abs(reconstructed - sequence))
     return error > threshold
 
-# Store current data for aggregate collections
-current_data = {
-    "trainESP": {},
-    "environmentESP": {}
-}
-
+# MQTT callbacks
 def on_connect(client, userdata, flags, reason_code, properties=None):
     print(f"Connected to MQTT with code {reason_code}")
     if reason_code == 0:
@@ -91,65 +107,39 @@ def on_message(client, userdata, msg):
         topic = msg.topic
         payload = msg.payload.decode()
         timestamp = datetime.utcnow().isoformat()
+        data = {'collection': topic, 'value': payload, 'timestamp': timestamp}
 
-        # Handle individual collections
         if topic in collections:
-            data_value = float(payload) if topic in windows else payload
-            if topic in windows:
+            # Numerical data anomaly detection
+            if topic in autoencoder_models and autoencoder_models[topic] is not None:
+                data_value = float(payload)
                 windows[topic].append(data_value)
-                if len(windows[topic]) == 10 and models[topic] is not None:
+                if len(windows[topic]) == 10:
                     sequence = list(windows[topic])
-                    is_anomaly = check_anomaly(sequence, models[topic], thresholds[topic])
-                else:
-                    is_anomaly = False
-                data = {'collection': topic, 'value': payload, 'timestamp': timestamp, 'anomaly': is_anomaly}
-            else:
-                data = {'collection': topic, 'value': payload, 'timestamp': timestamp}
+                    if check_anomaly(sequence, autoencoder_models[topic], autoencoder_thresholds[topic]):
+                        print(f"ALERT: Anomaly detected in {topic} - Value: {payload} - Timestamp: {timestamp}")
+
+            # Bit string anomaly detection
+            elif topic.startswith('sw420') and sw420_classifier is not None:
+                bit_string = payload
+                if len(bit_string) == 64:
+                    array = np.array([int(bit) for bit in bit_string]).reshape(1, 64)
+                    prediction = sw420_classifier.predict(array, verbose=0)
+                    max_prob = np.max(prediction)
+                    if max_prob < 0.9:  # Threshold for anomaly
+                        print(f"ALERT: Anomaly detected in {topic} - Bit String: {bit_string} - Timestamp: {timestamp}")
+
+            # Store data in MongoDB and cache
             collections[topic].insert_one(data)
             local_cache[topic].append(data)
             if len(local_cache[topic]) > 100:
                 local_cache[topic] = local_cache[topic][-100:]
 
-        # Aggregate data for trainESP
-        if topic in ["train_accelerometer", "train_ultra", "train_infra"]:
-            current_data["trainESP"][topic] = payload
-            if all(key in current_data["trainESP"] for key in ["train_accelerometer", "train_ultra", "train_infra"]):
-                aggregate_data = {
-                    "collection": "trainESP",
-                    "train_accelerometer": current_data["trainESP"]["train_accelerometer"],
-                    "train_ultra": current_data["trainESP"]["train_ultra"],
-                    "train_infra": current_data["trainESP"]["train_infra"],
-                    "timestamp": timestamp
-                }
-                collections["trainESP"].insert_one(aggregate_data)
-                local_cache["trainESP"].append(aggregate_data)
-                if len(local_cache["trainESP"]) > 100:
-                    local_cache["trainESP"] = local_cache["trainESP"][-100:]
-                current_data["trainESP"] = {}
-
-        # Aggregate data for environmentESP
-        elif topic in ["tof1", "tof2", "dht", "sw420", "env_ultra"]:
-            current_data["environmentESP"][topic] = payload
-            if all(key in current_data["environmentESP"] for key in ["tof1", "tof2", "dht", "sw420", "env_ultra"]):
-                aggregate_data = {
-                    "collection": "environmentESP",
-                    "tof1": current_data["environmentESP"]["tof1"],
-                    "tof2": current_data["environmentESP"]["tof2"],
-                    "dht": current_data["environmentESP"]["dht"],
-                    "sw420": current_data["environmentESP"]["sw420"],
-                    "env_ultra": current_data["environmentESP"]["env_ultra"],
-                    "timestamp": timestamp
-                }
-                collections["environmentESP"].insert_one(aggregate_data)
-                local_cache["environmentESP"].append(aggregate_data)
-                if len(local_cache["environmentESP"]) > 100:
-                    local_cache["environmentESP"] = local_cache["environmentESP"][-100:]
-                current_data["environmentESP"] = {}
-
     except Exception as e:
         print(f"Error processing MQTT message: {e}")
 
-mqtt_client = mqtt.Client(client_id="FlaskServer_" + str(random.randint(0, 0xffff))) # Unique client ID
+# MQTT setup
+mqtt_client = mqtt.Client(client_id="FlaskServer_" + str(random.randint(0, 0xffff)))
 mqtt_client.on_connect = on_connect
 mqtt_client.on_message = on_message
 
@@ -160,10 +150,11 @@ def run_mqtt():
             mqtt_client.loop_forever()
         except Exception as e:
             print(f"MQTT connection failed: {e}")
-            time.sleep(10)  # Wait 10 seconds before retrying
+            time.sleep(10)
 
 threading.Thread(target=run_mqtt, daemon=True).start()
 
+# Flask routes
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -177,7 +168,7 @@ def get_data():
     try:
         data = []
         for cache in local_cache.values():
-            data.extend(cache[-20:])  # Latest 20 from each collection
+            data.extend(cache[-20:])
         return jsonify(data), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -190,11 +181,6 @@ def get_collection_data(collection_name):
     for item in data:
         item['_id'] = str(item['_id'])
     return jsonify(data), 200
-
-@app.route('/api/ml_thresholds', methods=['GET'])
-def get_ml_thresholds():
-    thresholds_data = {col: thresholds[col] for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4'] if col in thresholds}
-    return jsonify(thresholds_data), 200
 
 @app.route('/api/ml_metrics', methods=['GET'])
 def get_ml_metrics():

@@ -13,7 +13,7 @@ const char* ssid = "Doraemon";
 const char* password = "helicopter";
 
 // MQTT Broker settings (local Mosquitto)
-const char* mqtt_server = "192.168.244.143"; // Replace with your laptop's IP, e.g., "192.168.1.100"
+const char* mqtt_server = "192.168.244.143"; // Laptop's IP
 const int mqtt_port = 1883;
 const char* mqtt_client_id = "ESP32_TrainSystem"; // Fixed client ID
 
@@ -25,14 +25,39 @@ const char* mqtt_topics[] = {
   "tof1",               // Time-of-Flight sensor 1 (0 to 200 cm)
   "tof2",               // Time-of-Flight sensor 2 (0 to 200 cm)
   "dht",                // Temperature (15.0 to 35.0 °C) or humidity (30.0 to 90.0 %)
-  "sw420",              // Vibration sensor (0 or 1)
-  "env_ultra",          // Environmental ultrasonic (20 to 400 cm)
-  "tof1_pos1",          // ToF position 1 (0 to 200 cm)
-  "tof1_pos2",          // ToF position 2 (0 to 200 cm)
-  "tof1_pos3",          // ToF position 3 (0 to 200 cm)
-  "tof1_pos4"           // ToF position 4 (0 to 200 cm)
+  "sw420",              // Vibration sensor (64-bit string)
+  "env_ultra"           // Environmental ultrasonic (20 to 400 cm)
 };
-const int num_topics = 12;
+const int num_topics = 8;
+
+// TOF1 position topics
+const char* tof1_pos_topics[] = {
+  "tof1_pos1", // ToF position 1 (0 to 200 cm)
+  "tof1_pos2", // ToF position 2 (0 to 200 cm)
+  "tof1_pos3", // ToF position 3 (0 to 200 cm)
+  "tof1_pos4"  // ToF position 4 (0 to 200 cm)
+};
+const int tof1_position = 0; // Selects tof1_posX (0: tof1_pos1, 1: tof1_pos2, 2: tof1_pos3, 3: tof1_pos4)
+
+// TOF2 position topics
+const char* tof2_pos_topics[] = {
+  "tof2_pos1", // ToF position 1 (0 to 200 cm)
+  "tof2_pos2", // ToF position 2 (0 to 200 cm)
+  "tof2_pos3", // ToF position 3 (0 to 200 cm)
+  "tof2_pos4"  // ToF position 4 (0 to 200 cm)
+};
+const int tof2_position = 0; // Selects tof2_posX (0: tof2_pos1, 1: tof2_pos2, 2: tof2_pos3, 3: tof2_pos4)
+
+// SW420 scenario topics
+const char* sw420_scene_topics[] = {
+  "sw420_scene1", // Scenario 1
+  "sw420_scene2", // Scenario 2
+  "sw420_scene3", // Scenario 3
+  "sw420_scene4", // Scenario 4
+  "sw420_scene5", // Scenario 5
+  "sw420_scene6"  // Scenario 6
+};
+const int sw420_scenario = 0; // Selects sw420_sceneX (0: scene1, 1: scene2, ..., 5: scene6)
 
 // WiFi and MQTT clients
 WiFiClient espClient;
@@ -68,25 +93,31 @@ void reconnect() {
 
 // Generate random sensor data based on topic
 String generateSensorData(const char* topic) {
-  float value;
   if (strcmp(topic, "train_accelerometer") == 0) {
-    value = random(0, 100) / 10.0; // 0.0 to 10.0 g
+    float value = random(0, 100) / 10.0; // 0.0 to 10.0 g
+    return String(value, 2);
   } else if (strcmp(topic, "train_ultra") == 0 || strcmp(topic, "env_ultra") == 0) {
-    value = random(20, 401); // 20 to 400 cm
+    float value = random(20, 401); // 20 to 400 cm
+    return String(value, 2);
   } else if (strcmp(topic, "train_infra") == 0) {
-    value = random(0, 1001); // 0 to 1000
+    float value = random(0, 1001); // 0 to 1000
+    return String(value, 2);
   } else if (strcmp(topic, "tof1") == 0 || strcmp(topic, "tof2") == 0 ||
-             strcmp(topic, "tof1_pos1") == 0 || strcmp(topic, "tof1_pos2") == 0 ||
-             strcmp(topic, "tof1_pos3") == 0 || strcmp(topic, "tof1_pos4") == 0) {
-    value = random(0, 201); // 0 to 200 cm
+             strstr(topic, "tof1_pos") != NULL || strstr(topic, "tof2_pos") != NULL) {
+    float value = random(0, 201); // 0 to 200 cm
+    return String(value, 2);
   } else if (strcmp(topic, "dht") == 0) {
-    value = random(150, 351) / 10.0; // 15.0 to 35.0 °C
-  } else if (strcmp(topic, "sw420") == 0) {
-    value = random(0, 2); // 0 or 1
+    float value = random(150, 351) / 10.0; // 15.0 to 35.0 °C
+    return String(value, 2);
+  } else if (strcmp(topic, "sw420") == 0 || strstr(topic, "sw420_scene") != NULL) {
+    String bitString = "";
+    for (int j = 0; j < 64; j++) {
+      bitString += String(random(0, 2));
+    }
+    return bitString;
   } else {
-    value = 0.0; // Default
+    return "0.0"; // Default
   }
-  return String(value, 2); // Convert to string with 2 decimal places
 }
 
 void setup() {
@@ -128,7 +159,7 @@ void loop() {
   }
   client.loop();
 
-  // Publish data to each topic
+  // Publish data to main topics
   for (int i = 0; i < num_topics; i++) {
     String data = generateSensorData(mqtt_topics[i]);
     client.publish(mqtt_topics[i], data.c_str());
@@ -136,8 +167,36 @@ void loop() {
     Serial.print(mqtt_topics[i]);
     Serial.print(": ");
     Serial.println(data);
+
+    // Publish TOF1 to selected tof1_posX topic
+    if (strcmp(mqtt_topics[i], "tof1") == 0 && tof1_position >= 0 && tof1_position < 4) {
+      client.publish(tof1_pos_topics[tof1_position], data.c_str());
+      Serial.print("Published to ");
+      Serial.print(tof1_pos_topics[tof1_position]);
+      Serial.print(": ");
+      Serial.println(data);
+    }
+
+    // Publish TOF2 to selected tof2_posX topic
+    if (strcmp(mqtt_topics[i], "tof2") == 0 && tof2_position >= 0 && tof2_position < 4) {
+      client.publish(tof2_pos_topics[tof2_position], data.c_str());
+      Serial.print("Published to ");
+      Serial.print(tof2_pos_topics[tof2_position]);
+      Serial.print(": ");
+      Serial.println(data);
+    }
+
+    // Publish SW420 to selected sw420_sceneX topic
+    if (strcmp(mqtt_topics[i], "sw420") == 0 && sw420_scenario >= 0 && sw420_scenario < 6) {
+      client.publish(sw420_scene_topics[sw420_scenario], data.c_str());
+      Serial.print("Published to ");
+      Serial.print(sw420_scene_topics[sw420_scenario]);
+      Serial.print(": ");
+      Serial.println(data);
+    }
+
     delay(100); // Small delay to avoid overwhelming the broker
   }
 
-  delay(1000); // Publish every 15 seconds
+  delay(1000); // Publish every 1 second (adjusted for testing)
 }
