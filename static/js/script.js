@@ -24,9 +24,9 @@ function populateTable(data) {
     let filteredData = data;
     if (deviceFilter !== 'all') {
         filteredData = filteredData.filter(item => {
-            const collection = item.collection || (item.train_accelerometer ? 'trainESP' : 'environmentESP');
-            return collection === deviceFilter || (deviceFilter === 'trainESP' && ['train_accelerometer', 'train_ultra', 'train_infra'].includes(collection)) ||
-                   (deviceFilter === 'environmentESP' && ['tof1', 'tof2', 'dht', 'sw420', 'env_ultra'].includes(collection));
+            const collection = item.collection;
+            return (deviceFilter === 'trainESP' && collection.startsWith('train/')) ||
+                   (deviceFilter === 'environmentESP' && collection.startsWith('env/'));
         });
     }
 
@@ -42,21 +42,12 @@ function populateTable(data) {
     filteredData.forEach((item, index) => {
         const row = document.createElement('tr');
         row.style.setProperty('--row-index', index);
-        const collectionName = item.collection || (item.train_accelerometer ? 'trainESP' : 'environmentESP');
-        const value = item.value || JSON.stringify({
-            ...(item.train_accelerometer && { train_accelerometer: item.train_accelerometer }),
-            ...(item.train_ultra && { train_ultra: item.train_ultra }),
-            ...(item.train_infra && { train_infra: item.train_infra }),
-            ...(item.tof1 && { tof1: item.tof1 }),
-            ...(item.tof2 && { tof2: item.tof2 }),
-            ...(item.dht && { dht: item.dht }),
-            ...(item.sw420 && { sw420: item.sw420 }),
-            ...(item.env_ultra && { env_ultra: item.env_ultra })
-        });
+        const isAnomaly = item.anomaly || false;
         row.innerHTML = `
-            <td>${collectionName}</td>
-            <td>${value}</td>
+            <td>${item.collection}</td>
+            <td class="${isAnomaly ? 'anomaly-cell' : ''}">${item.value}</td>
             <td>${new Date(item.timestamp).toLocaleString()}</td>
+            <td>${isAnomaly ? 'Yes' : 'No'}</td>
         `;
         tableBody.appendChild(row);
     });
@@ -65,19 +56,27 @@ function populateTable(data) {
 function updateChart(data) {
     const ctx = document.getElementById('sensorChart').getContext('2d');
     const datasets = [
-        { collection: 'train_accelerometer', label: 'Train Accelerometer', color: '#d4a5a5' },
-        { collection: 'train_ultra', label: 'Train Ultra', color: '#b392ac' },
-        { collection: 'train_infra', label: 'Train Infra', color: '#8e7b9b' },
-        { collection: 'tof1', label: 'TOF1', color: '#6d8299' },
-        { collection: 'tof2', label: 'TOF2', color: '#a3bffa' },
-        { collection: 'dht', label: 'DHT', color: '#f4a261' },
-        { collection: 'sw420', label: 'SW420', color: '#e76f51' },
-        { collection: 'env_ultra', label: 'Env Ultra', color: '#2a9d8f' }
+        { collection: 'train/accelero', label: 'Train Accelerometer', color: '#d4a5a5' },
+        { collection: 'train/ultra1', label: 'Train Ultra1', color: '#b392ac' },
+        { collection: 'train/ultra2', label: 'Train Ultra2', color: '#8e7b9b' },
+        { collection: 'env/tof1', label: 'TOF1', color: '#6d8299' },
+        { collection: 'env/tof2', label: 'TOF2', color: '#a3bffa' },
+        { collection: 'env/tof1_pos1', label: 'TOF1 Pos1', color: '#4caf50' },
+        { collection: 'env/tof1_pos2', label: 'TOF1 Pos2', color: '#ff9800' },
+        { collection: 'env/tof1_pos3', label: 'TOF1 Pos3', color: '#9c27b0' },
+        { collection: 'env/tof1_pos4', label: 'TOF1 Pos4', color: '#2196f3' },
+        { collection: 'env/tof2_pos1', label: 'TOF2 Pos1', color: '#f44336' },
+        { collection: 'env/tof2_pos2', label: 'TOF2 Pos2', color: '#ffeb3b' },
+        { collection: 'env/tof2_pos3', label: 'TOF2 Pos3', color: '#795548' },
+        { collection: 'env/tof2_pos4', label: 'TOF2 Pos4', color: '#607d8b' },
+        { collection: 'env/dht', label: 'DHT', color: '#f4a261' },
+        { collection: 'env/sw420', label: 'SW420', color: '#e76f51' },
+        { collection: 'env/env_infra', label: 'Env Infra', color: '#2a9d8f' }
     ].map(sensor => ({
         label: sensor.label,
         data: data.filter(item => item.collection === sensor.collection).slice(0, 10).reverse().map(item => parseFloat(item.value) || 0),
         borderColor: sensor.color,
-        backgroundColor: `${sensor.color}40`, // 25% opacity
+        backgroundColor: `${sensor.color}40`,
         fill: true,
         pointHoverRadius: 6,
     }));
@@ -86,7 +85,7 @@ function updateChart(data) {
     chartInstance = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: data.filter(item => item.collection === 'train_accelerometer').slice(0, 10).reverse().map(item => new Date(item.timestamp).toLocaleTimeString()),
+            labels: data.filter(item => item.collection === 'train/accelero').slice(0, 10).reverse().map(item => new Date(item.timestamp).toLocaleTimeString()),
             datasets: datasets
         },
         options: {
@@ -115,9 +114,9 @@ function updateChart(data) {
 
 function updateTrain(data) {
     const train = document.getElementById('train');
-    const latestTrain = data.find(item => item.collection === 'train_accelerometer') || {};
+    const latestTrain = data.find(item => item.collection === 'train/accelero') || {};
     train.classList.remove('moving', 'alert');
-    if (parseFloat(latestTrain.value) > 0) { // Example condition
+    if (parseFloat(latestTrain.value) > 0) {
         train.classList.add('moving');
     }
 }
@@ -125,7 +124,7 @@ function updateTrain(data) {
 function checkAlerts(data) {
     const latest = data[0] || {};
     const banner = document.getElementById('alert-banner');
-    if (latest.collection === 'train_infra' && parseFloat(latest.value) > 1000) { // Example threshold
+    if (latest.collection === 'env/env_infra' && parseFloat(latest.value) > 800) {
         banner.textContent = 'Infrared Alert!';
         banner.classList.add('show');
         setTimeout(() => banner.classList.remove('show'), 3000);

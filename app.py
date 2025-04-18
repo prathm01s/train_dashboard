@@ -19,30 +19,31 @@ db = mongo_client.train_system
 
 # Define collections for each MQTT topic
 collections = {
-    "train_accelerometer": db.train_accelerometer,
-    "train_ultra": db.train_ultra,
-    "train_infra": db.train_infra,
-    "tof1": db.tof1,
-    "tof2": db.tof2,
-    "dht": db.dht,
-    "sw420": db.sw420,
-    "env_ultra": db.env_ultra,
-    "trainESP": db.trainESP,
-    "environmentESP": db.environmentESP,
-    "tof1_pos1": db.tof1_pos1,
-    "tof1_pos2": db.tof1_pos2,
-    "tof1_pos3": db.tof1_pos3,
-    "tof1_pos4": db.tof1_pos4,
-    "tof2_pos1": db.tof2_pos1,
-    "tof2_pos2": db.tof2_pos2,
-    "tof2_pos3": db.tof2_pos3,
-    "tof2_pos4": db.tof2_pos4,
-    "sw420_scene1": db.sw420_scene1,
-    "sw420_scene2": db.sw420_scene2,
-    "sw420_scene3": db.sw420_scene3,
-    "sw420_scene4": db.sw420_scene4,
-    "sw420_scene5": db.sw420_scene5,
-    "sw420_scene6": db.sw420_scene6,
+    "env/tof1": db.env_tof1,
+    "env/tof1_pos1": db.env_tof1_pos1,
+    "env/tof1_pos2": db.env_tof1_pos2,
+    "env/tof1_pos3": db.env_tof1_pos3,
+    "env/tof1_pos4": db.env_tof1_pos4,
+    "env/tof2": db.env_tof2,
+    "env/tof2_pos1": db.env_tof2_pos1,
+    "env/tof2_pos2": db.env_tof2_pos2,
+    "env/tof2_pos3": db.env_tof2_pos3,
+    "env/tof2_pos4": db.env_tof2_pos4,
+    "env/sw420": db.env_sw420,
+    "env/sw420_scene1": db.env_sw420_scene1,
+    "env/sw420_scene2": db.env_sw420_scene2,
+    "env/sw420_scene3": db.env_sw420_scene3,
+    "env/sw420_scene4": db.env_sw420_scene4,
+    "env/sw420_scene5": db.env_sw420_scene5,
+    "env/sw420_scene6": db.env_sw420_scene6,
+    "env/env_infra": db.env_env_infra,
+    "env/dht": db.env_dht,
+    "env/servo_gate": db.env_servo_gate,
+    "env/servo_turn": db.env_servo_turn,
+    "train/accelero": db.train_accelero,
+    "train/ultra1": db.train_ultra1,
+    "train/ultra2": db.train_ultra2,
+    "train/power_on": db.train_power_on,
     "ml_metrics": db.ml_metrics
 }
 
@@ -50,26 +51,25 @@ collections = {
 MQTT_BROKER = "127.0.0.1"
 MQTT_PORT = 1883
 MQTT_TOPICS = [
-    "train_accelerometer", "train_ultra", "train_infra",
-    "tof1", "tof2", "dht", "sw420", "env_ultra",
-    "tof1_pos1", "tof1_pos2", "tof1_pos3", "tof1_pos4",
-    "tof2_pos1", "tof2_pos2", "tof2_pos3", "tof2_pos4",
-    "sw420_scene1", "sw420_scene2", "sw420_scene3",
-    "sw420_scene4", "sw420_scene5", "sw420_scene6"
+    "env/tof1", "env/tof1_pos1", "env/tof1_pos2", "env/tof1_pos3", "env/tof1_pos4",
+    "env/tof2", "env/tof2_pos1", "env/tof2_pos2", "env/tof2_pos3", "env/tof2_pos4",
+    "env/sw420", "env/sw420_scene1", "env/sw420_scene2", "env/sw420_scene3", "env/sw420_scene4", "env/sw420_scene5", "env/sw420_scene6",
+    "env/env_infra", "env/dht", "env/servo_gate", "env/servo_turn",
+    "train/accelero", "train/ultra1", "train/ultra2", "train/power_on"
 ]
 
 # Local cache for latest 100 entries per collection
 local_cache = {topic: [] for topic in collections.keys()}
 
 # Sliding windows for anomaly detection (10 readings)
-windows = {col: deque(maxlen=10) for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
-                                             'tof2_pos1', 'tof2_pos2', 'tof2_pos3', 'tof2_pos4']}
+windows = {col: deque(maxlen=10) for col in ['env/tof1_pos1', 'env/tof1_pos2', 'env/tof1_pos3', 'env/tof1_pos4',
+                                             'env/tof2_pos1', 'env/tof2_pos2', 'env/tof2_pos3', 'env/tof2_pos4']}
 
-# Load pre-trained models and thresholds from ml.py output
+# Load pre-trained models and thresholds
 autoencoder_models = {}
 autoencoder_thresholds = {}
-for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
-            'tof2_pos1', 'tof2_pos2', 'tof2_pos3', 'tof2_pos4']:
+for col in ['env/tof1_pos1', 'env/tof1_pos2', 'env/tof1_pos3', 'env/tof1_pos4',
+            'env/tof2_pos1', 'env/tof2_pos2', 'env/tof2_pos3', 'env/tof2_pos4']:
     try:
         autoencoder_models[col] = tf.keras.models.load_model(f'models/{col}_model')
         with open(f'models/{col}_threshold.json', 'r') as f:
@@ -88,7 +88,7 @@ except Exception as e:
 
 sw420_thresholds = {}
 for scene in range(1, 7):
-    scene_name = f'sw420_scene{scene}'
+    scene_name = f'env_sw420_scene{scene}'
     try:
         with open(f'models/{scene_name}_threshold.json', 'r') as f:
             sw420_thresholds[scene_name] = json.load(f)['threshold']
@@ -96,14 +96,12 @@ for scene in range(1, 7):
         print(f"Error loading threshold for {scene_name}: {e}")
         sw420_thresholds[scene_name] = 0.9  # Default threshold
 
-# Function to check anomalies using autoencoder
 def check_anomaly(sequence, model, threshold):
     sequence = np.array(sequence).reshape(1, 10, 1)
     reconstructed = model.predict(sequence, verbose=0)
     error = np.mean(np.abs(reconstructed - sequence))
-    return bool(error > threshold)  # Convert to Python bool
+    return bool(error > threshold)
 
-# MQTT callbacks
 def on_connect(client, userdata, flags, reason_code, properties=None):
     print(f"Connected to MQTT with code {reason_code}")
     if reason_code == 0:
@@ -120,7 +118,6 @@ def on_message(client, userdata, msg):
         data = {'collection': topic, 'value': payload, 'timestamp': timestamp}
 
         if topic in collections:
-            # Numerical data anomaly detection
             if topic in autoencoder_models and autoencoder_models[topic] is not None:
                 data_value = float(payload)
                 windows[topic].append(data_value)
@@ -128,38 +125,29 @@ def on_message(client, userdata, msg):
                     sequence = list(windows[topic])
                     is_anomaly = check_anomaly(sequence, autoencoder_models[topic], autoencoder_thresholds[topic])
                     if is_anomaly:
-                        print(f"ALERT: Anomaly detected in {topic} - Value: {payload} - Timestamp: {timestamp}")
+                        print(f"ALERT: Anomaly detected in {topic} - Value: {payload}")
                     data['anomaly'] = is_anomaly
-
-            # Bit string processing for sw420 and sw420_sceneX
-            elif topic.startswith('sw420') and sw420_classifier is not None:
+            elif topic.startswith('env/sw420') and sw420_classifier is not None:
                 bit_string = payload
                 if len(bit_string) == 64 and all(c in '01' for c in bit_string):
                     array = np.array([int(bit) for bit in bit_string]).reshape(1, 64)
                     prediction = sw420_classifier.predict(array, verbose=0)
-                    max_prob = float(np.max(prediction))  # Convert to float to avoid NumPy types
-                    scene_number = int(np.argmax(prediction))  # Predicted scene (0 to 5)
-                    scene_name = f'sw420_scene{scene_number + 1}'
+                    max_prob = float(np.max(prediction))
+                    scene_number = int(np.argmax(prediction))
+                    scene_name = f'env_sw420_scene{scene_number + 1}'
                     threshold = sw420_thresholds.get(scene_name, 0.9)
-                    is_anomaly = bool(max_prob < threshold)  # Convert to Python bool
-
+                    is_anomaly = bool(max_prob < threshold)
                     if is_anomaly:
-                        print(f"ALERT: Anomaly detected in {topic} - Bit String: {bit_string} - Predicted Scene: {scene_number} - Timestamp: {timestamp}")
-
-                    # Update data with scene number and anomaly flag
+                        print(f"ALERT: Anomaly detected in {topic} - Bit String: {bit_string}")
                     data['sceneNumber'] = scene_number
                     data['anomaly'] = is_anomaly
+                    if topic != 'env/sw420':
+                        data.pop('sceneNumber', None)
 
-                    # For sw420_sceneX, store as is
-                    if topic != 'sw420':
-                        data.pop('sceneNumber', None)  # Remove sceneNumber for scene-specific collections
-
-            # Store data in MongoDB and cache
             collections[topic].insert_one(data)
             local_cache[topic].append(data)
             if len(local_cache[topic]) > 100:
                 local_cache[topic] = local_cache[topic][-100:]
-
     except Exception as e:
         print(f"Error processing MQTT message: {e}")
 
@@ -179,7 +167,6 @@ def run_mqtt():
 
 threading.Thread(target=run_mqtt, daemon=True).start()
 
-# Flask routes
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -205,12 +192,10 @@ def get_all_data():
         limit = int(request.args.get('limit', 100))
         if skip < 0 or limit <= 0:
             return jsonify({"error": "Invalid skip or limit parameters"}), 400
-        
         data = []
         for topic, cache in local_cache.items():
             sliced_data = cache[-skip-limit:-skip] if skip > 0 else cache[-limit:]
             data.extend(sliced_data)
-        
         data.sort(key=lambda x: x['timestamp'], reverse=True)
         return jsonify(data[:limit]), 200
     except Exception as e:
@@ -227,8 +212,8 @@ def get_collection_data(collection_name):
 
 @app.route('/api/ml_thresholds', methods=['GET'])
 def get_ml_thresholds():
-    thresholds_data = {col: autoencoder_thresholds[col] for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
-                                                                  'tof2_pos1', 'tof2_pos2', 'tof2_pos3', 'tof2_pos4'] if col in autoencoder_thresholds}
+    thresholds_data = {col: autoencoder_thresholds[col] for col in ['env/tof1_pos1', 'env/tof1_pos2', 'env/tof1_pos3', 'env/tof1_pos4',
+                                                                  'env/tof2_pos1', 'env/tof2_pos2', 'env/tof2_pos3', 'env/tof2_pos4'] if col in autoencoder_thresholds}
     thresholds_data.update({col: sw420_thresholds[col] for col in sw420_thresholds})
     return jsonify(thresholds_data), 200
 

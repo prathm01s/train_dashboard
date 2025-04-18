@@ -124,14 +124,15 @@ body {
     transform: translateY(-2px);
 }
 
-.table td.alert-cell {
+.table td.anomaly-cell {
+    background-color: #ffebee;
     animation: glow 1s ease-in-out infinite;
 }
 
 @keyframes glow {
-    0% { background-color: #ffffff; }
-    50% { background-color: #e57373; }
-    100% { background-color: #ffffff; }
+    0% { background-color: #ffebee; }
+    50% { background-color: #ef5350; }
+    100% { background-color: #ffebee; }
 }
 
 .chart-container {
