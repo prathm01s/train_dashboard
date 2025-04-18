@@ -79,19 +79,29 @@ for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
         autoencoder_models[col] = None
         autoencoder_thresholds[col] = None
 
-# Load sw420 classifier
+# Load sw420 classifier and thresholds
 try:
     sw420_classifier = tf.keras.models.load_model('models/sw420_classifier')
 except Exception as e:
     print(f"Error loading sw420 classifier: {e}")
     sw420_classifier = None
 
+sw420_thresholds = {}
+for scene in range(1, 7):
+    scene_name = f'sw420_scene{scene}'
+    try:
+        with open(f'models/{scene_name}_threshold.json', 'r') as f:
+            sw420_thresholds[scene_name] = json.load(f)['threshold']
+    except Exception as e:
+        print(f"Error loading threshold for {scene_name}: {e}")
+        sw420_thresholds[scene_name] = 0.9  # Default threshold
+
 # Function to check anomalies using autoencoder
 def check_anomaly(sequence, model, threshold):
     sequence = np.array(sequence).reshape(1, 10, 1)
     reconstructed = model.predict(sequence, verbose=0)
     error = np.mean(np.abs(reconstructed - sequence))
-    return error > threshold
+    return bool(error > threshold)  # Convert to Python bool
 
 # MQTT callbacks
 def on_connect(client, userdata, flags, reason_code, properties=None):
@@ -116,18 +126,33 @@ def on_message(client, userdata, msg):
                 windows[topic].append(data_value)
                 if len(windows[topic]) == 10:
                     sequence = list(windows[topic])
-                    if check_anomaly(sequence, autoencoder_models[topic], autoencoder_thresholds[topic]):
+                    is_anomaly = check_anomaly(sequence, autoencoder_models[topic], autoencoder_thresholds[topic])
+                    if is_anomaly:
                         print(f"ALERT: Anomaly detected in {topic} - Value: {payload} - Timestamp: {timestamp}")
+                    data['anomaly'] = is_anomaly
 
-            # Bit string anomaly detection
+            # Bit string processing for sw420 and sw420_sceneX
             elif topic.startswith('sw420') and sw420_classifier is not None:
                 bit_string = payload
-                if len(bit_string) == 64:
+                if len(bit_string) == 64 and all(c in '01' for c in bit_string):
                     array = np.array([int(bit) for bit in bit_string]).reshape(1, 64)
                     prediction = sw420_classifier.predict(array, verbose=0)
-                    max_prob = np.max(prediction)
-                    if max_prob < 0.9:  # Threshold for anomaly
-                        print(f"ALERT: Anomaly detected in {topic} - Bit String: {bit_string} - Timestamp: {timestamp}")
+                    max_prob = float(np.max(prediction))  # Convert to float to avoid NumPy types
+                    scene_number = int(np.argmax(prediction))  # Predicted scene (0 to 5)
+                    scene_name = f'sw420_scene{scene_number + 1}'
+                    threshold = sw420_thresholds.get(scene_name, 0.9)
+                    is_anomaly = bool(max_prob < threshold)  # Convert to Python bool
+
+                    if is_anomaly:
+                        print(f"ALERT: Anomaly detected in {topic} - Bit String: {bit_string} - Predicted Scene: {scene_number} - Timestamp: {timestamp}")
+
+                    # Update data with scene number and anomaly flag
+                    data['sceneNumber'] = scene_number
+                    data['anomaly'] = is_anomaly
+
+                    # For sw420_sceneX, store as is
+                    if topic != 'sw420':
+                        data.pop('sceneNumber', None)  # Remove sceneNumber for scene-specific collections
 
             # Store data in MongoDB and cache
             collections[topic].insert_one(data)
@@ -173,6 +198,24 @@ def get_data():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/all-data', methods=['GET'])
+def get_all_data():
+    try:
+        skip = int(request.args.get('skip', 0))
+        limit = int(request.args.get('limit', 100))
+        if skip < 0 or limit <= 0:
+            return jsonify({"error": "Invalid skip or limit parameters"}), 400
+        
+        data = []
+        for topic, cache in local_cache.items():
+            sliced_data = cache[-skip-limit:-skip] if skip > 0 else cache[-limit:]
+            data.extend(sliced_data)
+        
+        data.sort(key=lambda x: x['timestamp'], reverse=True)
+        return jsonify(data[:limit]), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/api/collection/<collection_name>', methods=['GET'])
 def get_collection_data(collection_name):
     if collection_name not in collections:
@@ -181,6 +224,13 @@ def get_collection_data(collection_name):
     for item in data:
         item['_id'] = str(item['_id'])
     return jsonify(data), 200
+
+@app.route('/api/ml_thresholds', methods=['GET'])
+def get_ml_thresholds():
+    thresholds_data = {col: autoencoder_thresholds[col] for col in ['tof1_pos1', 'tof1_pos2', 'tof1_pos3', 'tof1_pos4',
+                                                                  'tof2_pos1', 'tof2_pos2', 'tof2_pos3', 'tof2_pos4'] if col in autoencoder_thresholds}
+    thresholds_data.update({col: sw420_thresholds[col] for col in sw420_thresholds})
+    return jsonify(thresholds_data), 200
 
 @app.route('/api/ml_metrics', methods=['GET'])
 def get_ml_metrics():

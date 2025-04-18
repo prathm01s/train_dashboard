@@ -5,6 +5,7 @@ import json
 import os
 from datetime import datetime
 from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
 
 # MongoDB Atlas
 mongo_uri = "mongodb+srv://prathmeshsharma101:tlasaay123@callibration.lekgwp4.mongodb.net/"
@@ -43,10 +44,17 @@ def train_autoencoder(data, collection_name):
     threshold = np.mean(errors) + 2 * np.std(errors)
     
     # Save model and threshold
-    os.makedirs('models', exist_ok=True)
-    model.save(f'models/{collection_name}_model')
-    with open(f'models/{collection_name}_threshold.json', 'w') as f:
-        json.dump({'threshold': float(threshold)}, f)
+    try:
+        os.makedirs('models', exist_ok=True)
+        model_path = f'models/{collection_name}_model'
+        threshold_path = f'models/{collection_name}_threshold.json'
+        model.save(model_path)
+        print(f"Saved autoencoder model to {model_path}")
+        with open(threshold_path, 'w') as f:
+            json.dump({'threshold': float(threshold)}, f)
+        print(f"Saved threshold to {threshold_path}")
+    except Exception as e:
+        print(f"Error saving model or threshold for {collection_name}: {e}")
     
     # Store metrics in MongoDB
     metrics = {
@@ -65,7 +73,7 @@ def train_sw420_classifier():
     labels = []
     for scene in range(1, 7):
         collection_name = f'sw420_scene{scene}'
-        bit_strings = [doc['value'] for doc in db[collection_name].find() if 'value' in doc and len(doc['value']) == 64]
+        bit_strings = [doc['value'] for doc in db[collection_name].find() if 'value' in doc and len(doc['value']) == 64 and all(c in '01' for c in doc['value'])]
         for bit_string in bit_strings:
             array = np.array([int(bit) for bit in bit_string])
             data.append(array)
@@ -75,17 +83,63 @@ def train_sw420_classifier():
         return
     data = np.array(data)
     labels = np.array(labels)
+    
+    # Split data for training and validation
+    X_train, X_val, y_train, y_val = train_test_split(data, labels, test_size=0.2, random_state=42)
+    
+    # Define and train model
     model = tf.keras.Sequential([
         tf.keras.layers.Dense(128, activation='relu', input_shape=(64,)),
         tf.keras.layers.Dense(64, activation='relu'),
         tf.keras.layers.Dense(6, activation='softmax')
     ])
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-    model.fit(data, labels, epochs=50, batch_size=32, validation_split=0.2)
-    model.save('models/sw420_classifier')
-    print("SW420 classifier trained and saved")
+    history = model.fit(X_train, y_train, epochs=50, batch_size=32, validation_data=(X_val, y_val), verbose=1)
+    
+    # Compute per-scene anomaly thresholds based on validation data
+    val_predictions = model.predict(X_val)
+    thresholds = {}
+    for scene in range(6):
+        scene_indices = y_val == scene
+        if np.any(scene_indices):
+            scene_probs = val_predictions[scene_indices, scene]
+            threshold = np.percentile(scene_probs, 10)  # 10th percentile for low confidence
+            thresholds[f'sw420_scene{scene + 1}'] = float(threshold)
+        else:
+            thresholds[f'sw420_scene{scene + 1}'] = 0.9  # Default threshold
+    
+    # Save model and thresholds
+    try:
+        os.makedirs('models', exist_ok=True)
+        model_path = 'models/sw420_classifier'
+        model.save(model_path)
+        print(f"Saved sw420 classifier to {model_path}")
+        for scene_name, threshold in thresholds.items():
+            threshold_path = f'models/{scene_name}_threshold.json'
+            with open(threshold_path, 'w') as f:
+                json.dump({'threshold': threshold}, f)
+            print(f"Saved threshold to {threshold_path}")
+            db.thresholds.insert_one({
+                "collectionName": scene_name,
+                "threshold": threshold,
+                "timestamp": datetime.utcnow().isoformat()
+            })
+    except Exception as e:
+        print(f"Error saving sw420 classifier or thresholds: {e}")
+    
+    # Store metrics in MongoDB
+    metrics = {
+        "collection": "sw420_classifier",
+        "final_loss": float(history.history['loss'][-1]),
+        "final_val_loss": float(history.history['val_loss'][-1]),
+        "final_accuracy": float(history.history['accuracy'][-1]),
+        "final_val_accuracy": float(history.history['val_accuracy'][-1]),
+        "timestamp": datetime.utcnow().isoformat()
+    }
+    db.ml_metrics.insert_one(metrics)
 
 def main():
+    print(f"Current working directory: {os.getcwd()}")
     for col in collections:
         print(f"Processing {col}...")
         values = fetch_data(col)
