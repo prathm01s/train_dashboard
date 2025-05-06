@@ -1,73 +1,113 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
+#include <Wire.h>
+#include <DHT.h>
 
 // WiFi credentials
 const char* ssid = "Doraemon";
 const char* password = "helicopter";
 
 // MQTT Broker settings
-const char* mqtt_server = "192.168.244.143";
+const char* mqtt_server = "192.168.156.143";
 const int mqtt_port = 1883;
 const char* mqtt_client_id = "env_esp";
 
-// Topics for env_esp
-const char* tof1_topic = "env/tof1";
-const char* tof2_topic = "env/tof2";
-const char* sw420_topic = "env/sw420";
-const char* env_infra_topic = "env/env_infra";
-const char* dht_topic = "env/dht";
-const char* servo_gate_topic = "env/servo_gate";
+// MQTT topics for publishing
 const char* servo_turn_topic = "env/servo_turn";
-const char* tof1_pos_topics[] = {"env/tof1_pos1", "env/tof1_pos2", "env/tof1_pos3", "env/tof1_pos4"};
-const char* tof2_pos_topics[] = {"env/tof2_pos1", "env/tof2_pos2", "env/tof2_pos3", "env/tof2_pos4"};
-const char* sw420_scene_topics[] = {"env/sw420_scene1", "env/sw420_scene2", "env/sw420_scene3", "env/sw420_scene4", "env/sw420_scene5", "env/sw420_scene6"};
+const char* env_ultra_topic = "env/env_ultra";
+const char* env_tof_topic = "env/env_tof";
+const char* vib1_topic = "env/vib1";
+const char* vib2_topic = "env/vib2";
+const char* vib1_ones_topic = "env/vib1_ones";
+const char* vib2_ones_topic = "env/vib2_ones";
+const char* train_control_topic = "env/train_control";
+const char* temperature_topic = "env/temperature";
+const char* position_topic = "train/position";
 
-// Control topics
-const char* control_topics[] = {"control/env/servo_gate", "control/env/servo_turn"};
+// MQTT topics for subscription
+const char* env_tof_sub = "env/env_tof";
+const char* train_tof_sub = "train/train_tof";
+const char* train_ultra_sub = "train/train_ultra";
+const char* servo_control_sub = "env/servo_control";
 
-// Configuration for position/scene selection
-const int tof1_position = 0; // Selects tof1_posX (0-3)
-const int tof2_position = 0; // Selects tof2_posX (0-3)
-const int sw420_scenario = 0; // Selects sw420_sceneX (0-5)
+// Sensor pins
+const int env_ultra_trigPin = 27;
+const int env_ultra_echoPin = 26;
+const int env_tof_sdaPin = 21;
+const int env_tof_sclPin = 22;
+const int vibs_sensor_1 = 14;
+const int vibs_sensor_2 = 13;
+const int servo_turn_sensor = 19;
+const int dhtPin = 16;
 
-// Subscribed topics from train_esp
-const char* train_topics[] = {"train/accelero", "train/ultra1", "train/ultra2", "train/power_on"};
+// DHT11 sensor
+DHT dht(dhtPin, DHT11);
 
-// Global variables for received data from train_esp
-float train_accelero = 0.0;
-float train_ultra1 = 0.0;
-float train_ultra2 = 0.0;
-int train_power_on = 0;
+// Variables for servo logic
+float env_tof_value = 0.0;
+float train_tof_value = 0.0;
+float train_ultra_value = 0.0;
+const float TOF_LOWER_BOUND = 350.0; // mm
+const float TOF_UPPER_BOUND = 490.0; // mm
+const float TRAIN_ULTRA_THRESHOLD = 10.5; // cm
+const float TRAIN_TOF_THRESHOLD = 9.7;  // cm
+unsigned long lastManualCommand = 0;
+const unsigned long MANUAL_OVERRIDE_DURATION = 5000; // 5 seconds
 
-// Servo flags
-int servo_gate = 0;
-int servo_turn = 0; // Can be set manually or via MQTT
+// Variables for vibration sensors
+char vibs1_buffer[101];
+char vibs2_buffer[101];
+int vibs1_index = 0;
+int vibs2_index = 0;
+int prev_vib1_ones = 0;
+int prev_vib2_ones = 0;
 
-// Threshold for servo_gate activation
-float servo_infra_threshold = 100.0; // Example value, adjust as needed
-
-// Servo objects and pins
-Servo servoGate;
+// Servo object
 Servo servoTurn;
-const int SERVO_GATE_PIN = 12;
-const int SERVO_TURN_PIN = 13;
+int servoAngle = 0;
 
 // WiFi and MQTT clients
 WiFiClient espClient;
 PubSubClient client(espClient);
 
+// Timing for sensor readings
+unsigned long lastSensorRead = 0;
+const unsigned long sensorInterval = 1000;
+
 // Function prototypes
 void reconnect();
 void callback(char* topic, byte* payload, unsigned int length);
-void servoTask(void *pvParameters);
-String generateSensorData(const char* topic);
-float readEnvInfra();
-void moveServoGate();
-void moveServoTurn();
+void vibs1Task(void *pvParameters);
+void vibs2Task(void *pvParameters);
+void vibsPublishTask(void *pvParameters);
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Starting env_esp setup...");
+
+  // Initialize pins
+  pinMode(env_ultra_trigPin, OUTPUT);
+  pinMode(env_ultra_echoPin, INPUT);
+  pinMode(vibs_sensor_1, INPUT);
+  pinMode(vibs_sensor_2, INPUT);
+
+  // Initialize DHT11 sensor
+  dht.begin();
+
+  // Initialize I2C for TOF sensor
+  Wire.begin(env_tof_sdaPin, env_tof_sclPin);
+
+  // Attach and test servo
+  servoTurn.attach(servo_turn_sensor);
+  Serial.println("Testing servo...");
+  servoTurn.write(0);
+  delay(500);
+  servoTurn.write(30);
+  delay(500);
+  servoTurn.write(0);
+  servoAngle = 0;
+  Serial.println("Servo test complete, initialized to 0°");
 
   // Connect to WiFi
   Serial.print("Connecting to ");
@@ -82,88 +122,121 @@ void setup() {
   }
   if (WiFi.status() == WL_CONNECTED) {
     Serial.println("WiFi connected");
-    Serial.println("IP address: ");
+    Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
   } else {
     Serial.println("WiFi connection failed");
-    while (true);
+    ESP.restart();
   }
 
   // Set MQTT server and callback
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
 
-  // Attach servos
-  servoGate.attach(SERVO_GATE_PIN);
-  servoTurn.attach(SERVO_TURN_PIN);
-
-  // Create servo control task
-  xTaskCreate(servoTask, "ServoTask", 2048, NULL, 1, NULL);
-
-  // Seed random number generator
-  randomSeed(analogRead(0));
+  // Create tasks for vibration sensors
+  xTaskCreate(vibs1Task, "Vibs1Task", 4096, NULL, 1, NULL);
+  xTaskCreate(vibs2Task, "Vibs2Task", 4096, NULL, 1, NULL);
+  xTaskCreate(vibsPublishTask, "VibsPublishTask", 4096, NULL, 1, NULL);
 }
 
 void loop() {
   if (!client.connected()) {
-    Serial.println("Reconnecting to MQTT...");
+    Serial.println("MQTT not connected, attempting reconnect...");
     reconnect();
   }
   client.loop();
 
-  // Publish sensor data
-  String tof1_data = generateSensorData("env/tof1");
-  client.publish(tof1_topic, tof1_data.c_str());
-  if (tof1_position >= 0 && tof1_position < 4) {
-    client.publish(tof1_pos_topics[tof1_position], tof1_data.c_str());
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastSensorRead >= sensorInterval) {
+    // Read ultrasonic sensor
+    digitalWrite(env_ultra_trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(env_ultra_trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(env_ultra_trigPin, LOW);
+    long duration = pulseIn(env_ultra_echoPin, HIGH, 30000);
+    float distance = (duration == 0) ? 9999.0 : (duration * 0.034 / 2);
+    String ultraData = String(distance, 2);
+    if (client.publish(env_ultra_topic, ultraData.c_str())) {
+      Serial.print("Published Ultrasonic Distance (cm): ");
+      Serial.println(distance, 2);
+    }
+
+    // Read TOF sensor
+    Wire.beginTransmission(0x52);
+    Wire.write(0x00);
+    Wire.endTransmission();
+    Wire.requestFrom(0x52, 2);
+    int tofDistance = -1;
+    if (Wire.available() >= 2) {
+      int high = Wire.read();
+      int low = Wire.read();
+      tofDistance = (high << 8) | low;
+    }
+    String tofData = String(tofDistance);
+    if (client.publish(env_tof_topic, tofData.c_str())) {
+      Serial.print("Published TOF Distance (mm): ");
+      Serial.println(tofDistance);
+    }
+
+    // Determine position based on sensor readings
+    String position;
+    if (distance >= 6.0 && distance <= 12.0) {
+      position = "Position D";
+    } else if (tofDistance >= 25 && tofDistance <= 60) {
+      position = "Position A";
+    } else if (tofDistance >= 350 && tofDistance <= 490) {
+      position = "Position B";
+    } else if (tofDistance >= 550 && tofDistance <= 670) {
+      position = "Position C";
+    } else {
+      position = "Unknown";
+    }
+    if (client.publish(position_topic, position.c_str())) {
+      Serial.print("Published Position: ");
+      Serial.println(position);
+    }
+
+    // Read DHT11 sensor for temperature
+    float temperature = dht.readTemperature();
+    if (!isnan(temperature)) {
+      String tempData = String(temperature, 2);
+      if (client.publish(temperature_topic, tempData.c_str())) {
+        Serial.print("Published Temperature: ");
+        Serial.print(temperature, 2);
+        Serial.println(" °C");
+      }
+    } else {
+      Serial.println("Failed to read temperature from DHT11");
+    }
+
+    lastSensorRead = currentMillis;
   }
-
-  String tof2_data = generateSensorData("env/tof2");
-  client.publish(tof2_topic, tof2_data.c_str());
-  if (tof2_position >= 0 && tof2_position < 4) {
-    client.publish(tof2_pos_topics[tof2_position], tof2_data.c_str());
-  }
-
-  String sw420_data = generateSensorData("env/sw420");
-  client.publish(sw420_topic, sw420_data.c_str());
-  if (sw420_scenario >= 0 && sw420_scenario < 6) {
-    client.publish(sw420_scene_topics[sw420_scenario], sw420_data.c_str());
-  }
-
-  String env_infra_data = generateSensorData("env/env_infra");
-  client.publish(env_infra_topic, env_infra_data.c_str());
-
-  String dht_data = generateSensorData("env/dht");
-  client.publish(dht_topic, dht_data.c_str());
-
-  // Publish servo flags
-  client.publish(servo_gate_topic, String(servo_gate).c_str());
-  client.publish(servo_turn_topic, String(servo_turn).c_str());
-
-  delay(1000); // Publish every 1 second
 }
 
 void reconnect() {
   int attempts = 0;
-  while (!client.connected() && attempts < 5) {
-    Serial.print("Attempting MQTT connection...");
+  while (!client.connected() && attempts < 10) {
+    Serial.print("Attempting MQTT connection (attempt ");
+    Serial.print(attempts + 1);
+    Serial.println(")...");
     if (client.connect(mqtt_client_id)) {
       Serial.println("MQTT connected");
-      // Subscribe to train_esp topics
-      for (int i = 0; i < 4; i++) {
-        client.subscribe(train_topics[i]);
-      }
-      // Subscribe to control topics
-      for (int i = 0; i < 2; i++) {
-        client.subscribe(control_topics[i]);
-      }
+      client.subscribe(env_tof_sub);
+      client.subscribe(train_tof_sub);
+      client.subscribe(train_ultra_sub);
+      client.subscribe(servo_control_sub);
+      Serial.println("Subscribed to env_tof, train_tof, train_ultra, env/servo_control");
     } else {
       Serial.print("Failed, rc=");
       Serial.print(client.state());
-      Serial.println(" Trying again in 10 seconds");
-      delay(10000);
+      Serial.println(" Trying again in 5 seconds");
+      delay(5000);
       attempts++;
     }
+  }
+  if (!client.connected()) {
+    Serial.println("MQTT connection failed after max attempts");
   }
 }
 
@@ -172,83 +245,147 @@ void callback(char* topic, byte* payload, unsigned int length) {
   for (unsigned int i = 0; i < length; i++) {
     message += (char)payload[i];
   }
-  if (strcmp(topic, "train/accelero") == 0) {
-    train_accelero = message.toFloat();
-  } else if (strcmp(topic, "train/ultra1") == 0) {
-    train_ultra1 = message.toFloat();
-  } else if (strcmp(topic, "train/ultra2") == 0) {
-    train_ultra2 = message.toFloat();
-  } else if (strcmp(topic, "train/power_on") == 0) {
-    train_power_on = message.toInt();
-  } else if (strcmp(topic, "control/env/servo_gate") == 0) {
-    servo_gate = message.toInt();
-  } else if (strcmp(topic, "control/env/servo_turn") == 0) {
-    servo_turn = message.toInt();
+  message.trim(); // Remove whitespace
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("]: ");
+  Serial.println(message);
+
+  // Handle sensor data
+  if (strcmp(topic, env_tof_sub) == 0) {
+    env_tof_value = message.toFloat();
+    Serial.print("Updated env_tof_value: ");
+    Serial.println(env_tof_value);
+  } else if (strcmp(topic, train_tof_sub) == 0) {
+    train_tof_value = message.toFloat();
+    Serial.print("Updated train_tof_value: ");
+    Serial.println(train_tof_value);
+  } else if (strcmp(topic, train_ultra_sub) == 0) {
+    train_ultra_value = message.toFloat();
+    Serial.print("Updated train_ultra_value: ");
+    Serial.println(train_ultra_value);
+  } else if (strcmp(topic, servo_control_sub) == 0) {
+    int newAngle = -1;
+    if (message == "0") {
+      newAngle = 0;
+    } else if (message == "30") {
+      newAngle = 30;
+    }
+    if (newAngle == 0 || newAngle == 30) {
+      servoTurn.write(newAngle);
+      servoAngle = newAngle;
+      lastManualCommand = millis();
+      Serial.print("Manual servo command: Moved to ");
+      Serial.print(newAngle);
+      Serial.println(" degrees");
+      String servoData = String(servoAngle);
+      if (client.publish(servo_turn_topic, servoData.c_str())) {
+        Serial.print("Published to env/servo_turn: ");
+        Serial.println(servoData);
+      }
+    } else {
+      Serial.println("Invalid servo angle received: " + message);
+    }
+  }
+
+  // Automatic servo control (skipped during manual override)
+  if (millis() - lastManualCommand > MANUAL_OVERRIDE_DURATION) {
+    bool stopTrain = false;
+    if (env_tof_value >= TOF_LOWER_BOUND && env_tof_value <= TOF_UPPER_BOUND) {
+      if (train_ultra_value < TRAIN_ULTRA_THRESHOLD && train_tof_value < TRAIN_TOF_THRESHOLD) {
+        stopTrain = true;
+        Serial.println("Both train sensors detect obstacle, stopping train");
+      } else if (train_ultra_value < TRAIN_ULTRA_THRESHOLD && servoAngle != 30) {
+        servoAngle = 30;
+        servoTurn.write(servoAngle);
+        Serial.println("Train ultrasonic detects obstacle, servo to 30 degrees");
+        String servoData = String(servoAngle);
+        if (client.publish(servo_turn_topic, servoData.c_str())) {
+          Serial.print("Published to env/servo_turn: ");
+          Serial.println(servoData);
+        }
+      } else if (train_tof_value < TRAIN_TOF_THRESHOLD && servoAngle != 0) {
+        servoAngle = 0;
+        servoTurn.write(servoAngle);
+        Serial.println("Train TOF detects obstacle, servo to 0 degrees");
+        String servoData = String(servoAngle);
+        if (client.publish(servo_turn_topic, servoData.c_str())) {
+          Serial.print("Published to env/servo_turn: ");
+          Serial.println(servoData);
+        }
+      }
+    }
+    if (stopTrain) {
+      String controlData = "1";
+      if (client.publish(train_control_topic, controlData.c_str())) {
+        Serial.println("Published stop signal to env/train_control");
+      }
+    }
   }
 }
 
-void servoTask(void *pvParameters) {
+void vibs1Task(void *pvParameters) {
   while (1) {
-    float env_infra = readEnvInfra();
-    if (env_infra < servo_infra_threshold) {
-      servo_gate = 1;
+    if (vibs1_index < 100) {
+      int val = digitalRead(vibs_sensor_1);
+      vibs1_buffer[vibs1_index] = val + '0';
+      vibs1_index++;
     }
-    if (servo_gate == 1) {
-      moveServoGate();
-      servo_gate = 0;
-    }
-    if (servo_turn == 1) {
-      moveServoTurn();
-      servo_turn = 0;
-    }
-    vTaskDelay(100 / portTICK_PERIOD_MS); // Check every 100ms
+    vTaskDelay(10 / portTICK_PERIOD_MS);
   }
 }
 
-float readEnvInfra() {
-  // Simulate sensor reading; replace with actual sensor code
-  return random(0, 200);
-}
-
-void moveServoGate() {
-  for (int pos = 0; pos <= 180; pos += 1) {
-    servoGate.write(pos);
-    delay(15);
-  }
-  for (int pos = 180; pos >= 0; pos -= 1) {
-    servoGate.write(pos);
-    delay(15);
-  }
-}
-
-void moveServoTurn() {
-  for (int pos = 0; pos <= 180; pos += 1) {
-    servoTurn.write(pos);
-    delay(15);
-  }
-  for (int pos = 180; pos >= 0; pos -= 1) {
-    servoTurn.write(pos);
-    delay(15);
-  }
-}
-
-String generateSensorData(const char* topic) {
-  if (strstr(topic, "tof1") != NULL || strstr(topic, "tof2") != NULL) {
-    float value = random(0, 201); // 0 to 200 cm
-    return String(value, 2);
-  } else if (strstr(topic, "sw420") != NULL) {
-    String bitString = "";
-    for (int j = 0; j < 64; j++) {
-      bitString += String(random(0, 2));
+void vibs2Task(void *pvParameters) {
+  while (1) {
+    if (vibs2_index < 100) {
+      int val = digitalRead(vibs_sensor_2);
+      vibs2_buffer[vibs2_index] = val + '0';
+      vibs2_index++;
     }
-    return bitString;
-  } else if (strcmp(topic, "env/env_infra") == 0) {
-    float value = random(0, 1001); // 0 to 1000
-    return String(value, 2);
-  } else if (strcmp(topic, "env/dht") == 0) {
-    float value = random(150, 351) / 10.0; // 15.0 to 35.0 °C
-    return String(value, 2);
-  } else {
-    return "0.0";
+    vTaskDelay(10 / portTICK_PERIOD_MS);
+  }
+}
+
+void vibsPublishTask(void *pvParameters) {
+  while (1) {
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    if (vibs1_index >= 100 && vibs2_index >= 100) {
+      vibs1_buffer[100] = '\0';
+      vibs2_buffer[100] = '\0';
+
+      String vib1_data = String(vibs1_buffer);
+      String vib2_data = String(vibs2_buffer);
+      if (client.publish(vib1_topic, vib1_data.c_str())) {
+        Serial.print("Published Vibration Sensor 1 Bits: ");
+        Serial.println(vibs1_buffer);
+      }
+      if (client.publish(vib2_topic, vib2_data.c_str())) {
+        Serial.print("Published Vibration Sensor 2 Bits: ");
+        Serial.println(vibs2_buffer);
+      }
+
+      int vib1_ones = 0;
+      int vib2_ones = 0;
+      for (int i = 0; i < 100; i++) {
+        if (vibs1_buffer[i] == '1') vib1_ones++;
+        if (vibs2_buffer[i] == '1') vib2_ones++;
+      }
+      String vib1_ones_data = String(vib1_ones);
+      String vib2_ones_data = String(vib2_ones);
+      if (client.publish(vib1_ones_topic, vib1_ones_data.c_str())) {
+        Serial.print("Published Vibration Sensor 1 Ones: ");
+        Serial.println(vib1_ones);
+      }
+      if (client.publish(vib2_ones_topic, vib2_ones_data.c_str())) {
+        Serial.print("Published Vibration Sensor 2 Ones: ");
+        Serial.println(vib2_ones);
+      }
+
+      vibs1_index = 0;
+      vibs2_index = 0;
+    } else {
+      if (vibs1_index > 100) vibs1_index = 0;
+      if (vibs2_index > 100) vibs2_index = 0;
+    }
   }
 }

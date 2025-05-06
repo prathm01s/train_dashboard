@@ -1,0 +1,906 @@
+2025-04-18 15:52:46,824 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:52:46,824 INFO: Processing env_tof1_pos1...
+2025-04-18 15:52:48,942 DEBUG: Fetched 614 values from env_tof1_pos1
+2025-04-18 15:52:57,622 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:52:57,649 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:52:57,650 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:52:57,934 DEBUG: Fetched 627 values from env_tof1_pos1
+2025-04-18 15:52:57,935 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:52:58,074 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:52:58,266 INFO: Threshold interval for env_tof1_pos1: [2.0, 196.12]
+2025-04-18 15:52:58,266 INFO: Processing env_tof1_pos2...
+2025-04-18 15:52:58,324 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:52:58,324 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:52:58,324 INFO: Processing env_tof1_pos3...
+2025-04-18 15:52:58,658 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:52:58,658 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:52:58,658 INFO: Processing env_tof1_pos4...
+2025-04-18 15:52:58,894 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:52:58,894 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:52:58,894 INFO: Processing env_tof2_pos1...
+2025-04-18 15:52:59,511 DEBUG: Fetched 628 values from env_tof2_pos1
+2025-04-18 15:53:18,681 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:53:18,710 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:53:18,711 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:53:19,591 DEBUG: Fetched 650 values from env_tof2_pos1
+2025-04-18 15:53:19,593 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:53:19,713 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:53:19,782 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 15:53:19,783 INFO: Processing env_tof2_pos2...
+2025-04-18 15:53:19,885 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:53:19,885 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:53:19,885 INFO: Processing env_tof2_pos3...
+2025-04-18 15:53:19,987 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:53:19,987 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:53:19,987 INFO: Processing env_tof2_pos4...
+2025-04-18 15:53:20,045 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:53:20,045 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:53:21,626 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:53:22,652 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:53:22,855 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:53:22,855 WARNING: Not enough data for train_ultra1
+2025-04-18 15:53:22,979 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:53:22,979 WARNING: Not enough data for train_ultra2
+2025-04-18 15:53:28,990 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:53:28,996 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:53:28,996 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:53:29,205 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:53:29,560 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:53:29,635 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:53:29,714 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:53:29,884 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:53:30,041 INFO: Saved sw420 classifier metrics
+2025-04-18 15:53:30,229 INFO: Stored sw420 classifier metrics
+2025-04-18 15:53:30,229 INFO: ML processing completed
+2025-04-18 15:53:32,888 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:53:32,888 INFO: Processing env_tof1_pos1...
+2025-04-18 15:53:34,945 DEBUG: Fetched 669 values from env_tof1_pos1
+2025-04-18 15:53:46,021 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:53:46,051 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:53:46,052 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:53:46,297 DEBUG: Fetched 685 values from env_tof1_pos1
+2025-04-18 15:53:46,299 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:53:46,365 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:53:46,451 INFO: Threshold interval for env_tof1_pos1: [2.0, 196.55999999999995]
+2025-04-18 15:53:46,451 INFO: Processing env_tof1_pos2...
+2025-04-18 15:53:46,509 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:53:46,509 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:53:46,509 INFO: Processing env_tof1_pos3...
+2025-04-18 15:53:46,570 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:53:46,570 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:53:46,570 INFO: Processing env_tof1_pos4...
+2025-04-18 15:53:46,629 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:53:46,629 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:53:46,629 INFO: Processing env_tof2_pos1...
+2025-04-18 15:53:46,730 DEBUG: Fetched 686 values from env_tof2_pos1
+2025-04-18 15:54:05,035 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:54:05,069 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:54:05,069 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:54:05,661 DEBUG: Fetched 710 values from env_tof2_pos1
+2025-04-18 15:54:05,663 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:54:05,710 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:54:05,779 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 15:54:05,779 INFO: Processing env_tof2_pos2...
+2025-04-18 15:54:05,839 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:54:05,839 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:54:05,840 INFO: Processing env_tof2_pos3...
+2025-04-18 15:54:05,899 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:54:05,899 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:54:05,899 INFO: Processing env_tof2_pos4...
+2025-04-18 15:54:05,958 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:54:05,958 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:54:06,284 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:54:06,550 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:54:06,595 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:54:06,595 WARNING: Not enough data for train_ultra1
+2025-04-18 15:54:06,685 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:54:06,685 WARNING: Not enough data for train_ultra2
+2025-04-18 15:54:12,020 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:54:12,026 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:54:12,026 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:54:12,157 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:54:12,435 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:54:12,498 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:54:12,621 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:54:12,766 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:54:12,826 INFO: Saved sw420 classifier metrics
+2025-04-18 15:54:13,031 INFO: Stored sw420 classifier metrics
+2025-04-18 15:54:13,031 INFO: ML processing completed
+2025-04-18 15:54:16,116 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:54:16,117 INFO: Processing env_tof1_pos1...
+2025-04-18 15:54:18,101 DEBUG: Fetched 731 values from env_tof1_pos1
+2025-04-18 15:54:41,310 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:54:41,338 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:54:41,339 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:54:41,778 DEBUG: Fetched 765 values from env_tof1_pos1
+2025-04-18 15:54:41,780 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:54:41,909 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:54:42,129 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 15:54:42,129 INFO: Processing env_tof1_pos2...
+2025-04-18 15:54:42,188 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:54:42,188 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:54:42,188 INFO: Processing env_tof1_pos3...
+2025-04-18 15:54:42,318 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:54:42,318 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:54:42,318 INFO: Processing env_tof1_pos4...
+2025-04-18 15:54:42,368 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:54:42,369 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:54:42,369 INFO: Processing env_tof2_pos1...
+2025-04-18 15:54:42,731 DEBUG: Fetched 766 values from env_tof2_pos1
+2025-04-18 15:54:56,288 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:54:56,316 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:54:56,317 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:54:56,659 DEBUG: Fetched 783 values from env_tof2_pos1
+2025-04-18 15:54:56,660 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:54:56,859 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:54:57,064 INFO: Threshold interval for env_tof2_pos1: [2.42, 199.0]
+2025-04-18 15:54:57,064 INFO: Processing env_tof2_pos2...
+2025-04-18 15:54:57,140 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:54:57,140 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:54:57,141 INFO: Processing env_tof2_pos3...
+2025-04-18 15:54:57,272 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:54:57,280 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:54:57,280 INFO: Processing env_tof2_pos4...
+2025-04-18 15:54:57,474 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:54:57,475 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:54:57,985 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:54:58,262 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:54:58,316 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:54:58,316 WARNING: Not enough data for train_ultra1
+2025-04-18 15:54:58,368 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:54:58,368 WARNING: Not enough data for train_ultra2
+2025-04-18 15:55:03,291 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:55:03,301 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:55:03,302 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:55:03,584 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:55:03,646 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:55:03,718 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:55:03,820 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:55:04,027 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:55:04,233 INFO: Saved sw420 classifier metrics
+2025-04-18 15:55:04,645 INFO: Stored sw420 classifier metrics
+2025-04-18 15:55:04,645 INFO: ML processing completed
+2025-04-18 15:55:07,112 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:55:07,112 INFO: Processing env_tof1_pos1...
+2025-04-18 15:55:09,356 DEBUG: Fetched 805 values from env_tof1_pos1
+2025-04-18 15:55:19,479 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:55:19,510 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:55:19,511 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:55:20,314 DEBUG: Fetched 817 values from env_tof1_pos1
+2025-04-18 15:55:20,316 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:55:20,411 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:55:20,821 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 15:55:20,821 INFO: Processing env_tof1_pos2...
+2025-04-18 15:55:21,435 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:55:21,435 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:55:21,436 INFO: Processing env_tof1_pos3...
+2025-04-18 15:55:21,655 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:55:21,655 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:55:21,655 INFO: Processing env_tof1_pos4...
+2025-04-18 15:55:21,762 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:55:21,762 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:55:21,762 INFO: Processing env_tof2_pos1...
+2025-04-18 15:55:21,980 DEBUG: Fetched 816 values from env_tof2_pos1
+2025-04-18 15:55:35,117 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:55:35,148 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:55:35,149 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:55:36,185 DEBUG: Fetched 834 values from env_tof2_pos1
+2025-04-18 15:55:36,188 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:55:36,796 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:55:36,852 INFO: Threshold interval for env_tof2_pos1: [2.9000000000000004, 199.0]
+2025-04-18 15:55:36,852 INFO: Processing env_tof2_pos2...
+2025-04-18 15:55:36,902 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:55:36,902 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:55:36,902 INFO: Processing env_tof2_pos3...
+2025-04-18 15:55:37,175 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:55:37,175 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:55:37,175 INFO: Processing env_tof2_pos4...
+2025-04-18 15:55:37,411 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:55:37,411 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:55:38,638 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:55:39,498 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:55:39,565 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:55:39,565 WARNING: Not enough data for train_ultra1
+2025-04-18 15:55:39,745 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:55:39,745 WARNING: Not enough data for train_ultra2
+2025-04-18 15:55:46,139 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:55:46,151 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:55:46,151 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:55:46,336 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:55:46,831 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:55:46,982 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:55:47,445 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:55:47,650 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:55:47,855 INFO: Saved sw420 classifier metrics
+2025-04-18 15:55:47,957 INFO: Stored sw420 classifier metrics
+2025-04-18 15:55:47,957 INFO: ML processing completed
+2025-04-18 15:55:51,104 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:55:51,104 INFO: Processing env_tof1_pos1...
+2025-04-18 15:55:55,883 DEBUG: Fetched 857 values from env_tof1_pos1
+2025-04-18 15:56:12,633 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:56:12,660 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:56:12,661 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:56:13,167 DEBUG: Fetched 873 values from env_tof1_pos1
+2025-04-18 15:56:13,168 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:56:13,248 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:56:13,440 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 15:56:13,440 INFO: Processing env_tof1_pos2...
+2025-04-18 15:56:13,658 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:56:13,659 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:56:13,659 INFO: Processing env_tof1_pos3...
+2025-04-18 15:56:13,785 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:56:13,785 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:56:13,785 INFO: Processing env_tof1_pos4...
+2025-04-18 15:56:13,845 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:56:13,845 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:56:13,845 INFO: Processing env_tof2_pos1...
+2025-04-18 15:56:14,049 DEBUG: Fetched 874 values from env_tof2_pos1
+2025-04-18 15:56:24,083 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:56:24,116 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:56:24,117 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:56:24,928 DEBUG: Fetched 886 values from env_tof2_pos1
+2025-04-18 15:56:24,930 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:56:25,331 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:56:25,437 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 15:56:25,437 INFO: Processing env_tof2_pos2...
+2025-04-18 15:56:25,741 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:56:25,742 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:56:25,742 INFO: Processing env_tof2_pos3...
+2025-04-18 15:56:25,871 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:56:25,872 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:56:25,872 INFO: Processing env_tof2_pos4...
+2025-04-18 15:56:25,953 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:56:25,953 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:56:26,352 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:56:32,703 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:56:33,319 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:56:33,319 WARNING: Not enough data for train_ultra1
+2025-04-18 15:56:33,523 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:56:33,525 WARNING: Not enough data for train_ultra2
+2025-04-18 15:56:38,545 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:56:38,553 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:56:38,554 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:56:38,772 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:56:38,848 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:56:39,462 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:56:39,589 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:56:39,779 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:56:39,974 INFO: Saved sw420 classifier metrics
+2025-04-18 15:56:40,215 INFO: Stored sw420 classifier metrics
+2025-04-18 15:56:40,215 INFO: ML processing completed
+2025-04-18 15:56:42,824 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:56:42,824 INFO: Processing env_tof1_pos1...
+2025-04-18 15:56:45,817 DEBUG: Fetched 896 values from env_tof1_pos1
+2025-04-18 15:57:01,119 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:57:01,146 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:57:01,147 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:57:01,786 DEBUG: Fetched 901 values from env_tof1_pos1
+2025-04-18 15:57:01,789 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:57:01,988 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:57:02,398 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 15:57:02,399 INFO: Processing env_tof1_pos2...
+2025-04-18 15:57:02,756 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:57:02,756 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:57:02,757 INFO: Processing env_tof1_pos3...
+2025-04-18 15:57:03,015 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:57:03,015 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:57:03,015 INFO: Processing env_tof1_pos4...
+2025-04-18 15:57:03,151 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:57:03,151 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:57:03,151 INFO: Processing env_tof2_pos1...
+2025-04-18 15:57:03,840 DEBUG: Fetched 901 values from env_tof2_pos1
+2025-04-18 15:57:14,369 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:57:14,400 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:57:14,401 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:57:14,896 DEBUG: Fetched 906 values from env_tof2_pos1
+2025-04-18 15:57:14,899 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:57:15,022 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:57:15,089 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 15:57:15,089 INFO: Processing env_tof2_pos2...
+2025-04-18 15:57:15,505 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:57:15,505 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:57:15,505 INFO: Processing env_tof2_pos3...
+2025-04-18 15:57:15,780 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:57:15,781 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:57:15,781 INFO: Processing env_tof2_pos4...
+2025-04-18 15:57:15,843 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:57:15,843 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:57:16,271 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:57:16,634 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:57:16,694 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:57:16,694 WARNING: Not enough data for train_ultra1
+2025-04-18 15:57:16,748 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:57:16,749 WARNING: Not enough data for train_ultra2
+2025-04-18 15:57:21,283 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:57:21,292 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:57:21,292 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:57:21,413 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:57:21,465 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:57:21,661 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:57:21,763 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:57:21,865 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:57:21,939 INFO: Saved sw420 classifier metrics
+2025-04-18 15:57:21,991 INFO: Stored sw420 classifier metrics
+2025-04-18 15:57:21,991 INFO: ML processing completed
+2025-04-18 15:57:25,562 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:57:25,562 INFO: Processing env_tof1_pos1...
+2025-04-18 15:57:48,588 DEBUG: Fetched 922 values from env_tof1_pos1
+2025-04-18 15:58:00,630 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:58:00,661 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:58:00,662 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:58:01,250 DEBUG: Fetched 927 values from env_tof1_pos1
+2025-04-18 15:58:01,253 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:58:01,378 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:58:01,583 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 15:58:01,583 INFO: Processing env_tof1_pos2...
+2025-04-18 15:58:01,787 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:58:01,788 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:58:01,788 INFO: Processing env_tof1_pos3...
+2025-04-18 15:58:01,857 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:58:01,857 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:58:01,858 INFO: Processing env_tof1_pos4...
+2025-04-18 15:58:01,927 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:58:01,927 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:58:01,927 INFO: Processing env_tof2_pos1...
+2025-04-18 15:58:02,238 DEBUG: Fetched 926 values from env_tof2_pos1
+2025-04-18 15:58:12,789 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:58:12,821 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:58:12,822 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:58:13,675 DEBUG: Fetched 934 values from env_tof2_pos1
+2025-04-18 15:58:13,678 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:58:13,787 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:58:13,868 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 15:58:13,868 INFO: Processing env_tof2_pos2...
+2025-04-18 15:58:13,946 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:58:13,947 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:58:13,947 INFO: Processing env_tof2_pos3...
+2025-04-18 15:58:14,026 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:58:14,026 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:58:14,026 INFO: Processing env_tof2_pos4...
+2025-04-18 15:58:14,108 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:58:14,108 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:58:14,470 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:58:14,987 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:58:15,067 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:58:15,067 WARNING: Not enough data for train_ultra1
+2025-04-18 15:58:15,150 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:58:15,150 WARNING: Not enough data for train_ultra2
+2025-04-18 15:58:19,057 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:58:19,065 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:58:19,065 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:58:19,195 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:58:19,400 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:58:19,604 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:58:19,747 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:58:19,912 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:58:20,282 INFO: Saved sw420 classifier metrics
+2025-04-18 15:58:20,423 INFO: Stored sw420 classifier metrics
+2025-04-18 15:58:20,423 INFO: ML processing completed
+2025-04-18 15:58:23,082 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:58:23,082 INFO: Processing env_tof1_pos1...
+2025-04-18 15:58:25,548 DEBUG: Fetched 942 values from env_tof1_pos1
+2025-04-18 15:58:48,546 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 15:58:48,578 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 15:58:48,579 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 15:58:49,102 DEBUG: Fetched 954 values from env_tof1_pos1
+2025-04-18 15:58:49,104 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 15:58:49,299 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 15:58:49,371 INFO: Threshold interval for env_tof1_pos1: [2.0, 196.89999999999998]
+2025-04-18 15:58:49,371 INFO: Processing env_tof1_pos2...
+2025-04-18 15:58:49,504 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 15:58:49,504 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 15:58:49,504 INFO: Processing env_tof1_pos3...
+2025-04-18 15:58:49,708 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 15:58:49,709 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 15:58:49,709 INFO: Processing env_tof1_pos4...
+2025-04-18 15:58:49,786 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 15:58:49,786 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 15:58:49,786 INFO: Processing env_tof2_pos1...
+2025-04-18 15:58:50,029 DEBUG: Fetched 954 values from env_tof2_pos1
+2025-04-18 15:59:31,481 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 15:59:31,515 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 15:59:31,517 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 15:59:32,310 DEBUG: Fetched 974 values from env_tof2_pos1
+2025-04-18 15:59:32,312 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 15:59:32,510 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 15:59:32,717 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 15:59:32,717 INFO: Processing env_tof2_pos2...
+2025-04-18 15:59:32,851 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 15:59:32,851 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 15:59:32,851 INFO: Processing env_tof2_pos3...
+2025-04-18 15:59:32,920 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 15:59:32,920 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 15:59:32,920 INFO: Processing env_tof2_pos4...
+2025-04-18 15:59:33,125 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 15:59:33,125 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 15:59:33,717 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 15:59:34,183 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 15:59:34,248 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 15:59:34,248 WARNING: Not enough data for train_ultra1
+2025-04-18 15:59:34,309 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 15:59:34,310 WARNING: Not enough data for train_ultra2
+2025-04-18 15:59:39,669 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 15:59:39,674 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 15:59:39,674 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 15:59:39,884 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 15:59:40,088 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 15:59:40,293 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 15:59:40,497 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 15:59:40,907 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 15:59:41,317 INFO: Saved sw420 classifier metrics
+2025-04-18 15:59:41,676 INFO: Stored sw420 classifier metrics
+2025-04-18 15:59:41,677 INFO: ML processing completed
+2025-04-18 15:59:44,817 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 15:59:44,817 INFO: Processing env_tof1_pos1...
+2025-04-18 15:59:48,493 DEBUG: Fetched 985 values from env_tof1_pos1
+2025-04-18 16:00:19,190 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 16:00:19,220 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 16:00:19,221 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 16:00:19,700 DEBUG: Fetched 999 values from env_tof1_pos1
+2025-04-18 16:00:19,703 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 16:00:19,768 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 16:00:19,867 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 16:00:19,868 INFO: Processing env_tof1_pos2...
+2025-04-18 16:00:20,022 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 16:00:20,023 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 16:00:20,023 INFO: Processing env_tof1_pos3...
+2025-04-18 16:00:20,102 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 16:00:20,102 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 16:00:20,102 INFO: Processing env_tof1_pos4...
+2025-04-18 16:00:20,183 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 16:00:20,183 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 16:00:20,183 INFO: Processing env_tof2_pos1...
+2025-04-18 16:00:20,422 DEBUG: Fetched 999 values from env_tof2_pos1
+2025-04-18 16:00:31,955 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 16:00:31,985 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 16:00:31,986 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 16:00:32,523 DEBUG: Fetched 1006 values from env_tof2_pos1
+2025-04-18 16:00:32,526 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 16:00:32,876 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 16:00:33,387 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 16:00:33,387 INFO: Processing env_tof2_pos2...
+2025-04-18 16:00:33,538 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 16:00:33,538 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 16:00:33,538 INFO: Processing env_tof2_pos3...
+2025-04-18 16:00:33,700 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 16:00:33,701 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 16:00:33,701 INFO: Processing env_tof2_pos4...
+2025-04-18 16:00:33,755 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 16:00:33,755 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 16:00:34,245 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 16:00:34,547 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 16:00:34,606 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 16:00:34,606 WARNING: Not enough data for train_ultra1
+2025-04-18 16:00:34,665 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 16:00:34,665 WARNING: Not enough data for train_ultra2
+2025-04-18 16:00:39,760 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 16:00:39,766 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 16:00:39,767 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 16:00:40,058 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 16:00:40,297 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 16:00:40,503 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 16:00:40,707 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 16:00:40,911 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 16:00:41,117 INFO: Saved sw420 classifier metrics
+2025-04-18 16:00:41,526 INFO: Stored sw420 classifier metrics
+2025-04-18 16:00:41,526 INFO: ML processing completed
+2025-04-18 16:00:44,172 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 16:00:44,173 INFO: Processing env_tof1_pos1...
+2025-04-18 16:00:47,472 DEBUG: Fetched 1016 values from env_tof1_pos1
+2025-04-18 16:01:03,696 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 16:01:03,725 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 16:01:03,726 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 16:01:04,265 DEBUG: Fetched 1024 values from env_tof1_pos1
+2025-04-18 16:01:04,268 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 16:01:04,667 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 16:01:05,148 INFO: Threshold interval for env_tof1_pos1: [2.0, 197.0]
+2025-04-18 16:01:05,148 INFO: Processing env_tof1_pos2...
+2025-04-18 16:01:05,195 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 16:01:05,195 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 16:01:05,195 INFO: Processing env_tof1_pos3...
+2025-04-18 16:01:05,352 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 16:01:05,352 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 16:01:05,352 INFO: Processing env_tof1_pos4...
+2025-04-18 16:01:05,486 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 16:01:05,487 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 16:01:05,487 INFO: Processing env_tof2_pos1...
+2025-04-18 16:01:05,856 DEBUG: Fetched 1024 values from env_tof2_pos1
+2025-04-18 16:01:50,025 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 16:01:50,056 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 16:01:50,057 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 16:01:51,163 DEBUG: Fetched 1045 values from env_tof2_pos1
+2025-04-18 16:01:51,167 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 16:01:51,611 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 16:01:51,714 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 16:01:51,715 INFO: Processing env_tof2_pos2...
+2025-04-18 16:01:51,800 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 16:01:51,800 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 16:01:51,800 INFO: Processing env_tof2_pos3...
+2025-04-18 16:01:51,850 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 16:01:51,850 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 16:01:51,851 INFO: Processing env_tof2_pos4...
+2025-04-18 16:01:51,961 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 16:01:51,961 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 16:01:52,314 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 16:01:52,582 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 16:01:52,640 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 16:01:52,640 WARNING: Not enough data for train_ultra1
+2025-04-18 16:01:52,730 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 16:01:52,730 WARNING: Not enough data for train_ultra2
+2025-04-18 16:01:57,091 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 16:01:57,097 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 16:01:57,098 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 16:01:57,300 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 16:01:57,505 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 16:01:57,564 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 16:01:57,710 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 16:01:57,813 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 16:01:58,045 INFO: Saved sw420 classifier metrics
+2025-04-18 16:01:58,324 INFO: Stored sw420 classifier metrics
+2025-04-18 16:01:58,324 INFO: ML processing completed
+2025-04-18 19:09:48,171 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:09:48,171 INFO: Processing env_tof1_pos1...
+2025-04-18 19:09:51,658 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:12:43,408 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 19:12:43,451 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 19:12:43,452 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 19:18:06,755 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:18:06,755 INFO: Processing env_tof1_pos1...
+2025-04-18 19:18:13,506 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:20:22,709 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 19:20:22,765 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 19:20:22,767 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 19:20:23,618 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:20:23,631 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 19:20:23,689 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 19:20:23,768 INFO: Threshold interval for env_tof1_pos1: [1.5300000000000011, 198.0]
+2025-04-18 19:20:23,769 INFO: Processing env_tof1_pos2...
+2025-04-18 19:20:23,833 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 19:20:23,834 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 19:20:23,834 INFO: Processing env_tof1_pos3...
+2025-04-18 19:20:23,929 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 19:20:23,929 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 19:20:23,929 INFO: Processing env_tof1_pos4...
+2025-04-18 19:20:24,009 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 19:20:24,009 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 19:20:24,009 INFO: Processing env_tof2_pos1...
+2025-04-18 19:20:24,379 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:21:15,079 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 19:21:15,125 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 19:21:15,126 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 19:21:15,799 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:21:15,806 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 19:21:15,868 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 19:21:15,938 INFO: Threshold interval for env_tof2_pos1: [1.9600000000000009, 199.0]
+2025-04-18 19:21:15,938 INFO: Processing env_tof2_pos2...
+2025-04-18 19:21:16,012 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 19:21:16,012 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 19:21:16,012 INFO: Processing env_tof2_pos3...
+2025-04-18 19:21:16,087 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 19:21:16,088 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 19:21:16,088 INFO: Processing env_tof2_pos4...
+2025-04-18 19:21:16,169 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 19:21:16,169 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 19:21:16,569 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 19:21:16,864 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 19:21:16,923 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 19:21:16,923 WARNING: Not enough data for train_ultra1
+2025-04-18 19:21:16,971 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 19:21:16,972 WARNING: Not enough data for train_ultra2
+2025-04-18 19:21:28,332 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 19:21:28,342 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 19:21:28,342 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 19:21:28,633 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 19:21:28,872 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 19:21:29,079 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 19:21:29,283 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 19:21:29,502 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 19:21:29,609 INFO: Saved sw420 classifier metrics
+2025-04-18 19:21:30,105 INFO: Stored sw420 classifier metrics
+2025-04-18 19:21:30,105 INFO: ML processing completed
+2025-04-18 19:21:35,032 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:21:35,032 INFO: Processing env_tof1_pos1...
+2025-04-18 19:21:39,005 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:22:15,168 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 19:22:15,211 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 19:22:15,213 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 19:22:16,410 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:22:16,417 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 19:22:16,590 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 19:22:17,112 INFO: Threshold interval for env_tof1_pos1: [2.0, 198.98999999999978]
+2025-04-18 19:22:17,112 INFO: Processing env_tof1_pos2...
+2025-04-18 19:22:17,280 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 19:22:17,280 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 19:22:17,280 INFO: Processing env_tof1_pos3...
+2025-04-18 19:22:17,380 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 19:22:17,381 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 19:22:17,381 INFO: Processing env_tof1_pos4...
+2025-04-18 19:22:17,554 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 19:22:17,555 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 19:22:17,555 INFO: Processing env_tof2_pos1...
+2025-04-18 19:22:17,912 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:24:51,543 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 19:24:51,585 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 19:24:51,587 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 19:24:52,874 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:24:52,881 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 19:24:53,275 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 19:24:53,491 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 19:24:53,492 INFO: Processing env_tof2_pos2...
+2025-04-18 19:24:53,576 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 19:24:53,576 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 19:24:53,576 INFO: Processing env_tof2_pos3...
+2025-04-18 19:24:53,730 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 19:24:53,730 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 19:24:53,730 INFO: Processing env_tof2_pos4...
+2025-04-18 19:24:53,813 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 19:24:53,813 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 19:24:54,209 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 19:24:54,611 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 19:24:54,690 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 19:24:54,690 WARNING: Not enough data for train_ultra1
+2025-04-18 19:24:54,770 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 19:24:54,771 WARNING: Not enough data for train_ultra2
+2025-04-18 19:25:10,440 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 19:25:10,450 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 19:25:10,451 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 19:25:10,675 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 19:25:10,753 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 19:25:10,888 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 19:25:11,061 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 19:25:11,283 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 19:25:11,503 INFO: Saved sw420 classifier metrics
+2025-04-18 19:25:11,617 INFO: Stored sw420 classifier metrics
+2025-04-18 19:25:11,617 INFO: ML processing completed
+2025-04-18 19:25:16,214 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:25:16,214 INFO: Processing env_tof1_pos1...
+2025-04-18 19:25:20,312 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:26:11,526 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 19:26:11,572 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 19:26:11,573 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 19:26:12,551 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:26:12,557 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 19:26:12,721 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 19:26:13,124 INFO: Threshold interval for env_tof1_pos1: [1.0, 198.0]
+2025-04-18 19:26:13,125 INFO: Processing env_tof1_pos2...
+2025-04-18 19:26:13,540 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 19:26:13,541 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 19:26:13,541 INFO: Processing env_tof1_pos3...
+2025-04-18 19:26:13,655 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 19:26:13,655 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 19:26:13,655 INFO: Processing env_tof1_pos4...
+2025-04-18 19:26:13,731 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 19:26:13,731 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 19:26:13,731 INFO: Processing env_tof2_pos1...
+2025-04-18 19:26:14,156 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:26:40,782 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 19:26:40,829 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 19:26:40,829 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 19:26:42,838 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:26:42,843 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 19:26:43,031 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 19:26:43,457 INFO: Threshold interval for env_tof2_pos1: [2.0, 199.0]
+2025-04-18 19:26:43,457 INFO: Processing env_tof2_pos2...
+2025-04-18 19:26:43,645 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 19:26:43,646 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 19:26:43,646 INFO: Processing env_tof2_pos3...
+2025-04-18 19:26:43,808 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 19:26:43,808 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 19:26:43,808 INFO: Processing env_tof2_pos4...
+2025-04-18 19:26:43,892 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 19:26:43,892 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 19:26:44,288 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 19:26:44,675 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 19:26:44,716 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 19:26:44,717 WARNING: Not enough data for train_ultra1
+2025-04-18 19:26:44,769 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 19:26:44,769 WARNING: Not enough data for train_ultra2
+2025-04-18 19:27:03,145 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 19:27:03,155 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 19:27:03,155 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 19:27:03,308 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 19:27:03,620 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 19:27:04,146 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 19:27:04,734 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 19:27:05,352 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 19:27:05,560 INFO: Saved sw420 classifier metrics
+2025-04-18 19:27:05,776 INFO: Stored sw420 classifier metrics
+2025-04-18 19:27:05,776 INFO: ML processing completed
+2025-04-18 19:27:10,205 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:27:10,205 INFO: Processing env_tof1_pos1...
+2025-04-18 19:27:15,389 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:28:05,383 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 19:28:05,426 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 19:28:05,427 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 19:28:07,002 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:28:07,008 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 19:28:07,102 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 19:28:07,397 INFO: Threshold interval for env_tof1_pos1: [1.740000000000002, 198.0]
+2025-04-18 19:28:07,398 INFO: Processing env_tof1_pos2...
+2025-04-18 19:28:07,604 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 19:28:07,604 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 19:28:07,604 INFO: Processing env_tof1_pos3...
+2025-04-18 19:28:07,717 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 19:28:07,717 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 19:28:07,717 INFO: Processing env_tof1_pos4...
+2025-04-18 19:28:07,796 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 19:28:07,797 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 19:28:07,797 INFO: Processing env_tof2_pos1...
+2025-04-18 19:28:08,233 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:30:28,118 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 19:30:28,162 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 19:30:28,163 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 19:30:29,733 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:30:29,739 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 19:30:29,801 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 19:30:29,924 INFO: Threshold interval for env_tof2_pos1: [1.7199999999999989, 199.0]
+2025-04-18 19:30:29,924 INFO: Processing env_tof2_pos2...
+2025-04-18 19:30:29,970 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 19:30:29,971 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 19:30:29,971 INFO: Processing env_tof2_pos3...
+2025-04-18 19:30:30,040 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 19:30:30,040 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 19:30:30,040 INFO: Processing env_tof2_pos4...
+2025-04-18 19:30:30,085 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 19:30:30,086 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 19:30:30,644 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 19:30:31,054 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 19:30:31,135 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 19:30:31,135 WARNING: Not enough data for train_ultra1
+2025-04-18 19:30:31,214 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 19:30:31,214 WARNING: Not enough data for train_ultra2
+2025-04-18 19:30:46,064 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 19:30:46,074 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 19:30:46,075 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 19:30:46,300 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 19:30:46,587 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 19:30:47,325 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 19:30:48,409 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 19:30:49,578 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 19:30:50,397 INFO: Saved sw420 classifier metrics
+2025-04-18 19:30:51,273 INFO: Stored sw420 classifier metrics
+2025-04-18 19:30:51,273 INFO: ML processing completed
+2025-04-18 19:30:55,845 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:30:55,845 INFO: Processing env_tof1_pos1...
+2025-04-18 19:31:00,080 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-18 19:32:57,161 INFO: Assets written to: models/env_tof1_pos1_model/assets
+2025-04-18 19:32:57,215 INFO: Saved autoencoder model to models/env_tof1_pos1_model
+2025-04-18 19:32:57,215 INFO: Saved threshold to models/env_tof1_pos1_threshold.json
+2025-04-18 19:50:16,961 ERROR: Error fetching data from env_tof1_pos1: ac-ris1rya-shard-00-01.lekgwp4.mongodb.net:27017: connection closed (configured timeouts: connectTimeoutMS: 20000.0ms)
+2025-04-18 19:50:16,964 INFO: Saved normal and anomalies for env_tof1_pos1
+2025-04-18 19:50:20,963 INFO: Stored metrics for env_tof1_pos1
+2025-04-18 19:50:21,444 INFO: Threshold interval for env_tof1_pos1: [1.0, 198.17000000000007]
+2025-04-18 19:50:21,444 INFO: Processing env_tof1_pos2...
+2025-04-18 19:50:21,571 DEBUG: Fetched 0 values from env_tof1_pos2
+2025-04-18 19:50:21,571 WARNING: Not enough data for env_tof1_pos2
+2025-04-18 19:50:21,571 INFO: Processing env_tof1_pos3...
+2025-04-18 19:50:21,781 DEBUG: Fetched 0 values from env_tof1_pos3
+2025-04-18 19:50:21,781 WARNING: Not enough data for env_tof1_pos3
+2025-04-18 19:50:21,781 INFO: Processing env_tof1_pos4...
+2025-04-18 19:50:22,179 DEBUG: Fetched 0 values from env_tof1_pos4
+2025-04-18 19:50:22,179 WARNING: Not enough data for env_tof1_pos4
+2025-04-18 19:50:22,179 INFO: Processing env_tof2_pos1...
+2025-04-18 19:50:24,456 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:51:13,303 INFO: Assets written to: models/env_tof2_pos1_model/assets
+2025-04-18 19:51:13,350 INFO: Saved autoencoder model to models/env_tof2_pos1_model
+2025-04-18 19:51:13,351 INFO: Saved threshold to models/env_tof2_pos1_threshold.json
+2025-04-18 19:51:14,450 DEBUG: Fetched 3581 values from env_tof2_pos1
+2025-04-18 19:51:14,466 INFO: Saved normal and anomalies for env_tof2_pos1
+2025-04-18 19:51:14,822 INFO: Stored metrics for env_tof2_pos1
+2025-04-18 19:51:15,026 INFO: Threshold interval for env_tof2_pos1: [1.0, 199.0]
+2025-04-18 19:51:15,027 INFO: Processing env_tof2_pos2...
+2025-04-18 19:51:15,232 DEBUG: Fetched 0 values from env_tof2_pos2
+2025-04-18 19:51:15,232 WARNING: Not enough data for env_tof2_pos2
+2025-04-18 19:51:15,232 INFO: Processing env_tof2_pos3...
+2025-04-18 19:51:15,592 DEBUG: Fetched 0 values from env_tof2_pos3
+2025-04-18 19:51:15,592 WARNING: Not enough data for env_tof2_pos3
+2025-04-18 19:51:15,592 INFO: Processing env_tof2_pos4...
+2025-04-18 19:51:15,726 DEBUG: Fetched 0 values from env_tof2_pos4
+2025-04-18 19:51:15,726 WARNING: Not enough data for env_tof2_pos4
+2025-04-18 19:51:16,238 INFO: Groups for env_tof1: [{'group': 0, 'leftBound': 2.0, 'rightBound': 196.12}]
+2025-04-18 19:51:16,656 INFO: Groups for env_tof2: [{'group': 0, 'leftBound': 2.0, 'rightBound': 199.0}]
+2025-04-18 19:51:16,736 DEBUG: Fetched 0 values from train_ultra1
+2025-04-18 19:51:16,736 WARNING: Not enough data for train_ultra1
+2025-04-18 19:51:16,816 DEBUG: Fetched 0 values from train_ultra2
+2025-04-18 19:51:16,816 WARNING: Not enough data for train_ultra2
+2025-04-18 19:51:37,084 INFO: Assets written to: models/sw420_classifier/assets
+2025-04-18 19:51:37,097 INFO: Saved sw420 classifier to models/sw420_classifier
+2025-04-18 19:51:37,098 INFO: Saved threshold to models/env_sw420_scene1_threshold.json
+2025-04-18 19:51:37,432 INFO: Saved threshold to models/env_sw420_scene2_threshold.json
+2025-04-18 19:51:37,605 INFO: Saved threshold to models/env_sw420_scene3_threshold.json
+2025-04-18 19:51:37,759 INFO: Saved threshold to models/env_sw420_scene4_threshold.json
+2025-04-18 19:51:37,967 INFO: Saved threshold to models/env_sw420_scene5_threshold.json
+2025-04-18 19:51:38,360 INFO: Saved threshold to models/env_sw420_scene6_threshold.json
+2025-04-18 19:51:38,578 INFO: Saved sw420 classifier metrics
+2025-04-18 19:51:39,191 INFO: Stored sw420 classifier metrics
+2025-04-18 19:51:39,192 INFO: ML processing completed
+2025-04-18 19:51:44,393 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-18 19:51:44,393 INFO: Processing env_tof1_pos1...
+2025-04-18 19:51:48,205 DEBUG: Fetched 3590 values from env_tof1_pos1
+2025-04-24 13:22:20,437 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:22:20,437 INFO: Processing env_env_tof...
+2025-04-24 13:22:22,899 DEBUG: Fetched 2095 values from env_env_tof
+2025-04-24 13:22:40,763 INFO: Assets written to: models/env_env_tof_model/assets
+2025-04-24 13:22:40,790 INFO: Saved autoencoder model to models/env_env_tof_model
+2025-04-24 13:22:40,791 INFO: Saved threshold to models/env_env_tof_threshold.json
+2025-04-24 13:22:40,949 INFO: Stored metrics for env_env_tof
+2025-04-24 13:22:40,949 INFO: Processing env_env_ultra...
+2025-04-24 13:22:42,108 DEBUG: Fetched 2097 values from env_env_ultra
+2025-04-24 13:23:04,480 INFO: Assets written to: models/env_env_ultra_model/assets
+2025-04-24 13:23:04,505 INFO: Saved autoencoder model to models/env_env_ultra_model
+2025-04-24 13:23:04,506 INFO: Saved threshold to models/env_env_ultra_threshold.json
+2025-04-24 13:23:04,564 INFO: Stored metrics for env_env_ultra
+2025-04-24 13:23:04,565 INFO: Processing env_vib1...
+2025-04-24 13:23:05,133 DEBUG: Fetched 1881 values from env_vib1
+2025-04-24 13:23:28,153 INFO: Assets written to: models/env_vib1_model/assets
+2025-04-24 13:23:28,179 INFO: Saved autoencoder model to models/env_vib1_model
+2025-04-24 13:23:28,180 INFO: Saved threshold to models/env_vib1_threshold.json
+2025-04-24 13:23:28,319 INFO: Stored metrics for env_vib1
+2025-04-24 13:34:15,541 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:34:15,541 INFO: Processing env_vib1...
+2025-04-24 13:34:19,274 DEBUG: Fetched 1881 values from env_vib1
+2025-04-24 13:34:58,825 INFO: Assets written to: models/env_vib1_model/assets
+2025-04-24 13:34:58,853 INFO: Saved autoencoder model to models/env_vib1_model
+2025-04-24 13:34:58,853 INFO: Saved threshold to models/env_vib1_threshold.json
+2025-04-24 13:34:58,954 INFO: Stored metrics for env_vib1
+2025-04-24 13:34:58,955 INFO: Processing env_vib2...
+2025-04-24 13:34:59,567 DEBUG: Fetched 173 values from env_vib2
+2025-04-24 13:35:06,850 INFO: Assets written to: models/env_vib2_model/assets
+2025-04-24 13:35:06,876 INFO: Saved autoencoder model to models/env_vib2_model
+2025-04-24 13:35:06,877 INFO: Saved threshold to models/env_vib2_threshold.json
+2025-04-24 13:35:07,035 INFO: Stored metrics for env_vib2
+2025-04-24 13:35:09,552 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:35:09,552 INFO: Processing env_vib1...
+2025-04-24 13:35:11,765 DEBUG: Fetched 1881 values from env_vib1
+2025-04-24 13:35:25,197 INFO: Assets written to: models/env_vib1_model/assets
+2025-04-24 13:35:25,227 INFO: Saved autoencoder model to models/env_vib1_model
+2025-04-24 13:35:25,227 INFO: Saved threshold to models/env_vib1_threshold.json
+2025-04-24 13:35:25,365 INFO: Stored metrics for env_vib1
+2025-04-24 13:35:25,365 INFO: Processing env_vib2...
+2025-04-24 13:35:25,988 DEBUG: Fetched 173 values from env_vib2
+2025-04-24 13:35:32,505 INFO: Assets written to: models/env_vib2_model/assets
+2025-04-24 13:35:32,534 INFO: Saved autoencoder model to models/env_vib2_model
+2025-04-24 13:35:32,535 INFO: Saved threshold to models/env_vib2_threshold.json
+2025-04-24 13:35:32,728 INFO: Stored metrics for env_vib2
+2025-04-24 13:35:35,620 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:35:35,620 INFO: Processing env_vib1...
+2025-04-24 13:35:39,068 DEBUG: Fetched 1881 values from env_vib1
+2025-04-24 13:35:52,445 INFO: Assets written to: models/env_vib1_model/assets
+2025-04-24 13:35:52,473 INFO: Saved autoencoder model to models/env_vib1_model
+2025-04-24 13:35:52,474 INFO: Saved threshold to models/env_vib1_threshold.json
+2025-04-24 13:35:52,637 INFO: Stored metrics for env_vib1
+2025-04-24 13:35:52,637 INFO: Processing env_vib2...
+2025-04-24 13:35:53,227 DEBUG: Fetched 173 values from env_vib2
+2025-04-24 13:35:59,577 INFO: Assets written to: models/env_vib2_model/assets
+2025-04-24 13:35:59,608 INFO: Saved autoencoder model to models/env_vib2_model
+2025-04-24 13:35:59,608 INFO: Saved threshold to models/env_vib2_threshold.json
+2025-04-24 13:35:59,771 INFO: Stored metrics for env_vib2
+2025-04-24 13:36:02,296 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:36:02,296 INFO: Processing env_vib1...
+2025-04-24 13:36:05,011 DEBUG: Fetched 1881 values from env_vib1
+2025-04-24 13:36:19,494 INFO: Assets written to: models/env_vib1_model/assets
+2025-04-24 13:36:19,521 INFO: Saved autoencoder model to models/env_vib1_model
+2025-04-24 13:36:19,522 INFO: Saved threshold to models/env_vib1_threshold.json
+2025-04-24 13:36:19,638 INFO: Stored metrics for env_vib1
+2025-04-24 13:36:19,638 INFO: Processing env_vib2...
+2025-04-24 13:36:20,056 DEBUG: Fetched 173 values from env_vib2
+2025-04-24 13:36:26,531 INFO: Assets written to: models/env_vib2_model/assets
+2025-04-24 13:36:26,558 INFO: Saved autoencoder model to models/env_vib2_model
+2025-04-24 13:36:26,559 INFO: Saved threshold to models/env_vib2_threshold.json
+2025-04-24 13:36:26,805 INFO: Stored metrics for env_vib2
+2025-04-24 13:36:29,266 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:36:29,266 INFO: Processing env_vib1...
+2025-04-24 13:36:31,480 DEBUG: Fetched 1881 values from env_vib1
+2025-04-24 13:37:04,034 INFO: Assets written to: models/env_vib1_model/assets
+2025-04-24 13:37:04,064 INFO: Saved autoencoder model to models/env_vib1_model
+2025-04-24 13:37:04,065 INFO: Saved threshold to models/env_vib1_threshold.json
+2025-04-24 13:37:04,159 INFO: Stored metrics for env_vib1
+2025-04-24 13:37:04,159 INFO: Processing env_vib2...
+2025-04-24 13:37:04,482 DEBUG: Fetched 173 values from env_vib2
+2025-04-24 13:37:10,997 INFO: Assets written to: models/env_vib2_model/assets
+2025-04-24 13:37:11,028 INFO: Saved autoencoder model to models/env_vib2_model
+2025-04-24 13:37:11,028 INFO: Saved threshold to models/env_vib2_threshold.json
+2025-04-24 13:37:11,117 INFO: Stored metrics for env_vib2
+2025-04-24 13:37:15,767 INFO: Starting ML processing in /home/prathm_s/Desktop/gitrepo/train_dashboard
+2025-04-24 13:37:15,767 INFO: Processing env_vib1...
+2025-04-24 13:37:25,200 DEBUG: Fetched 1881 values from env_vib1

@@ -13,59 +13,60 @@
     <header class="header">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="display-4">Train System Monitoring</h1>
-            <div class="d-flex align-items-center gap-2">
-                <button onclick="history.back()" class="btn btn-primary">Back</button>
-                <div class="train-svg">
-                    <svg id="train" width="150" height="60" viewBox="0 0 150 60">
-                        <rect x="30" y="10" width="80" height="40" rx="10" fill="#e8b4b8"/>
-                        <circle cx="50" cy="30" r="8" fill="#ffffff"/>
-                        <circle cx="90" cy="30" r="8" fill="#ffffff"/>
-                        <circle class="wheel" cx="45" cy="55" r="8" fill="#3c3c3c"/>
-                        <circle class="wheel" cx="65" cy="55" r="8" fill="#3c3c3c"/>
-                        <circle class="wheel" cx="85" cy="55" r="8" fill="#3c3c3c"/>
-                        <circle class="wheel" cx="105" cy="55" r="8" fill="#3c3c3c"/>
-                        <rect x="110" y="5" width="10" height="15" fill="#8e7b9b"/>
-                        <circle class="smoke" cx="115" cy="5" r="5" fill="#f5f5f5" opacity="0"/>
-                        <rect x="0" y="58" width="150" height="2" fill="#999999" stroke-dasharray="5,5"/>
-                    </svg>
-                </div>
+            <div class="train-svg">
+                <svg id="train" width="150" height="60" viewBox="0 0 150 60">
+                    <rect x="30" y="10" width="80" height="40" rx="10" fill="#e8b4b8"/>
+                    <circle cx="50" cy="30" r="8" fill="#ffffff"/>
+                    <circle cx="90" cy="30" r="8" fill="#ffffff"/>
+                    <circle class="wheel" cx="45" cy="55" r="8" fill="#3c3c3c"/>
+                    <circle class="wheel" cx="65" cy="55" r="8" fill="#3c3c3c"/>
+                    <circle class="wheel" cx="85" cy="55" r="8" fill="#3c3c3c"/>
+                    <circle class="wheel" cx="105" cy="55" r="8" fill="#3c3c3c"/>
+                    <rect x="110" y="5" width="10" height="15" fill="#8e7b9b"/>
+                    <circle class="smoke" cx="115" cy="5" r="5" fill="#f5f5f5" opacity="0"/>
+                    <rect x="0" y="58" width="150" height="2" fill="#999999" stroke-dasharray="5,5"/>
+                </svg>
             </div>
         </div>
     </header>
     <main class="container my-5">
-        <section class="mb-4">
-            <div class="controls mb-3 d-flex flex-wrap gap-2">
-                <button id="refresh-btn" class="btn btn-primary">Refresh Data</button>
-                <button id="toggle-chart-btn" class="btn btn-primary">Hide Chart</button>
+        <section id="controls" class="mb-4">
+            <div class="controls mb-3 d-flex flex-wrap gap-2 justify-content-center">
                 <a href="/data" class="btn btn-primary">View Data</a>
-                <select id="device-filter" class="form-select w-auto">
-                    <option value="all">All Devices</option>
-                    <option value="trainESP">TrainESP</option>
-                    <option value="environmentESP">EnvironmentESP</option>
-                </select>
+                <button id="train-start" class="btn btn-success">Train Start</button>
+                <button id="train-stop" class="btn btn-danger">Train Stop</button>
+                <button id="servo-30" class="btn btn-info">Servo to 30°</button>
+                <button id="servo-0" class="btn btn-info">Servo to 0°</button>
             </div>
         </section>
-        <section class="mb-5">
-            <h2 class="section-title">Sensor Data</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered">
+        <section id="chart-section" class="mb-5">
+            <h2 class="section-title">Sensor Trends</h2>
+            <div id="charts-container" class="row">
+                <!-- Charts will be dynamically inserted here -->
+            </div>
+        </section>
+        <section id="train-position" class="mb-5">
+            <h2 class="section-title">Train Position</h2>
+            <div class="train-position-container">
+                <div class="position-card">
+                    <h3>Current Position</h3>
+                    <p id="position-value">Loading...</p>
+                </div>
+            </div>
+        </section>
+        <section id="fog-storage" class="mb-5">
+            <h2 class="section-title">Fog-Storage (Last 100 Values)</h2>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered fog-table">
                     <thead>
                         <tr>
                             <th>Collection</th>
                             <th>Value</th>
                             <th>Timestamp</th>
-                            <th>Anomaly</th>
                         </tr>
                     </thead>
-                    <tbody id="data-table"></tbody>
+                    <tbody id="fog-storage-table"></tbody>
                 </table>
-                <p id="no-data-message" class="text-center mt-3" style="display: none;">No data matches your criteria.</p>
-            </div>
-        </section>
-        <section id="chart-section">
-            <h2 class="section-title">Sensor Trends</h2>
-            <div class="chart-container">
-                <canvas id="sensorChart"></canvas>
             </div>
         </section>
     </main>
@@ -76,6 +77,206 @@
     </footer>
     <div id="alert-banner" class="alert-banner"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        const collections = [
+            "env/env_ultra", "env/env_tof", "env/vib1", "env/vib2",
+            "env/temperature", "train/train_tof", "train/train_ultra"
+        ];
+        const bitStringCollections = ["env/vib1", "env/vib2"];
+        let charts = {};
+
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/data');
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                const data = await response.json();
+                updateCharts(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                showAlert('Failed to load sensor data', 'danger');
+            }
+        }
+
+        async function fetchCache() {
+            try {
+                const cacheData = [];
+                for (const topic of collections) {
+                    try {
+                        const response = await fetch(`/api/cache/${topic}`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            cacheData.push(...data);
+                        } else {
+                            console.warn(`Cache fetch failed for ${topic}: ${response.status}`);
+                        }
+                    } catch (err) {
+                        console.error(`Error fetching cache for ${topic}:`, err);
+                    }
+                }
+                cacheData.sort((a, b) => {
+                    const timeA = a.timestamp ? new Date(a.timestamp) : new Date(0);
+                    const timeB = b.timestamp ? new Date(b.timestamp) : new Date(0);
+                    return timeB - timeA;
+                });
+                updateFogTable(cacheData.slice(0, 100));
+            } catch (error) {
+                console.error('Error fetching cache:', error);
+                showAlert('Failed to load fog storage data', 'danger');
+            }
+        }
+
+        async function fetchPosition() {
+            try {
+                const response = await fetch('/api/latest_position');
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                const data = await response.json();
+                updatePosition(data.position);
+            } catch (error) {
+                console.error('Error fetching position:', error);
+                updatePosition('Unknown');
+            }
+        }
+
+        function updateFogTable(data) {
+            const tbody = document.getElementById('fog-storage-table');
+            tbody.innerHTML = '';
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.style.setProperty('--row-index', index);
+                const timestamp = item.timestamp ? new Date(item.timestamp).toLocaleString() : 'N/A';
+                row.innerHTML = `
+                    <td>${item.collection}</td>
+                    <td>${item.value}</td>
+                    <td>${timestamp}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updatePosition(position) {
+            const positionElement = document.getElementById('position-value');
+            positionElement.textContent = position || 'Unknown';
+        }
+
+        function processDataForChart(data, collection, isBitString) {
+            const filtered = data.filter(item => item.collection === collection);
+            filtered.sort((a, b) => {
+                const timeA = a.timestamp ? new Date(a.timestamp) : new Date(0);
+                const timeB = b.timestamp ? new Date(b.timestamp) : new Date(0);
+                return timeB - timeA;
+            });
+            const labels = filtered.map(item => {
+                return item.timestamp ? new Date(item.timestamp).toLocaleTimeString() : 'N/A';
+            });
+            let values;
+            if (isBitString) {
+                values = filtered.map(item => (item.value.match(/1/g) || []).length);
+            } else {
+                values = filtered.map(item => parseFloat(item.value) || 0);
+            }
+            return { labels: labels.slice(-20), values: values.slice(-20) };
+        }
+
+        function createChart(collection, data) {
+            const isBitString = bitStringCollections.includes(collection);
+            const chartData = processDataForChart(data, collection, isBitString);
+            const ctx = document.getElementById(`chart-${collection}`).getContext('2d');
+            charts[collection] = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [{
+                        label: isBitString ? `Number of Ones in ${collection}` : collection,
+                        data: chartData.values,
+                        borderColor: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Timestamp' } },
+                        y: { title: { display: true, text: isBitString ? 'Number of Ones' : 'Value' } }
+                    }
+                }
+            });
+        }
+
+        function updateCharts(data) {
+            collections.forEach(collection => {
+                try {
+                    if (!charts[collection]) {
+                        const container = document.createElement('div');
+                        container.className = 'col-md-6 mb-4';
+                        container.innerHTML = `
+                            <div class="chart-container">
+                                <h3>${collection}</h3>
+                                <canvas id="chart-${collection}"></canvas>
+                            </div>
+                        `;
+                        document.getElementById('charts-container').appendChild(container);
+                        createChart(collection, data);
+                    } else {
+                        const chartData = processDataForChart(data, collection, bitStringCollections.includes(collection));
+                        charts[collection].data.labels = chartData.labels;
+                        charts[collection].data.datasets[0].data = chartData.values;
+                        charts[collection].update();
+                    }
+                } catch (err) {
+                    console.error(`Error updating chart for ${collection}:`, err);
+                }
+            });
+        }
+
+        document.getElementById('train-start').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/train/start', { method: 'POST' });
+                showAlert(response.ok ? 'Train Start command sent' : 'Failed to send Train Start command', response.ok ? 'success' : 'danger');
+            } catch (error) {
+                showAlert('Error sending Train Start command', 'danger');
+            }
+        });
+
+        document.getElementById('train-stop').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/train/stop', { method: 'POST' });
+                showAlert(response.ok ? 'Train Stop command sent' : 'Failed to send Train Stop command', response.ok ? 'success' : 'danger');
+            } catch (error) {
+                showAlert('Error sending Train Stop command', 'danger');
+            }
+        });
+
+        document.getElementById('servo-30').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/servo/30', { method: 'POST' });
+                showAlert(response.ok ? 'Servo to 30° command sent' : 'Failed to send Servo to 30° command', response.ok ? 'success' : 'danger');
+            } catch (error) {
+                showAlert('Error sending Servo to 30° command', 'danger');
+            }
+        });
+
+        document.getElementById('servo-0').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/servo/0', { method: 'POST' });
+                showAlert(response.ok ? 'Servo to 0° command sent' : 'Failed to send Servo to 0° command', response.ok ? 'success' : 'danger');
+            } catch (error) {
+                showAlert('Error sending Servo to 0° command', 'danger');
+            }
+        });
+
+        function showAlert(message, type = 'success') {
+            const alertBanner = document.getElementById('alert-banner');
+            alertBanner.textContent = message;
+            alertBanner.className = `alert-banner alert-${type} show`;
+            setTimeout(() => {
+                alertBanner.className = 'alert-banner';
+            }, 3000);
+        }
+
+        fetchData();
+        fetchCache();
+        fetchPosition();
+        setInterval(fetchPosition, 5000); // Update position every 5 seconds
+    </script>
 </body>
 </html>

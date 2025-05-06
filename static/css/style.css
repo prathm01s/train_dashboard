@@ -66,25 +66,17 @@ body {
     animation: fadeIn 0.8s ease;
 }
 
-.controls .btn-primary {
+.controls .btn-primary, .controls .btn-success, .controls .btn-danger, .controls .btn-info {
     background-color: #d4a5a5;
     border-color: #d4a5a5;
     color: #ffffff;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.controls .btn-primary:hover {
+.controls .btn-primary:hover, .controls .btn-success:hover, .controls .btn-danger:hover, .controls .btn-info:hover {
     background-color: #b392ac;
     border-color: #b392ac;
     transform: translateY(-2px);
-}
-
-.controls .form-select {
-    background-color: #ffffff;
-    border-color: #b392ac;
-    color: #4a4a4a;
-    font-family: 'Poppins', sans-serif;
-    max-width: 200px;
 }
 
 .table {
@@ -129,6 +121,51 @@ body {
     animation: glow 1s ease-in-out infinite;
 }
 
+.fog-table {
+    background-color: #e6f3fa;
+    border: 2px solid #b392ac;
+}
+
+.fog-table th {
+    background-color: #b392ac;
+    color: #ffffff;
+}
+
+.fog-table td {
+    background-color: #f0f8ff;
+}
+
+.train-position-container {
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1s ease;
+}
+
+.position-card {
+    background: linear-gradient(135deg, #d4a5a5, #b392ac);
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    color: #ffffff;
+    animation: slideUp 0.6s ease forwards;
+}
+
+.position-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.position-card p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
 @keyframes glow {
     0% { background-color: #ffebee; }
     50% { background-color: #ef5350; }
@@ -140,9 +177,14 @@ body {
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
     margin: 0 auto;
     animation: fadeIn 1s ease;
+}
+
+.chart-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .footer {
@@ -163,13 +205,21 @@ body {
     top: -100px;
     left: 0;
     right: 0;
-    background: #d4a5a5;
-    color: #ffffff;
     padding: 1rem;
     text-align: center;
     transition: top 0.5s ease;
     z-index: 1000;
     font-size: 1rem;
+}
+
+.alert-banner.alert-success {
+    background: #28a745;
+    color: #ffffff;
+}
+
+.alert-banner.alert-danger {
+    background: #dc3545;
+    color: #ffffff;
 }
 
 .alert-banner.show {
@@ -181,8 +231,9 @@ body {
     .train-svg svg { width: 120px; height: 48px; }
     .table { width: 95%; }
     .chart-container { max-width: 500px; }
+    .position-card { max-width: 300px; }
     .controls { flex-direction: column; align-items: stretch; }
-    .controls .form-select, .controls .btn { max-width: none; }
+    .controls .btn { max-width: none; }
 }
 
 @media (max-width: 576px) {
@@ -192,6 +243,9 @@ body {
     .table { font-size: 0.8rem; }
     .chart-container { max-width: 100%; padding: 1rem; }
     .chart-container canvas { height: 300px !important; }
+    .position-card { padding: 1rem; }
+    .position-card h3 { font-size: 1.2rem; }
+    .position-card p { font-size: 1rem; }
 }
 
 @keyframes fadeIn {
