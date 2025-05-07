@@ -1,0 +1,632 @@
+[{
+  "_id": {
+    "$oid": "6809e9f507fdc5aaf8c38c7c"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:36:21.744309"
+},
+{
+  "_id": {
+    "$oid": "6809e9fc2bc4ace5ce7f5f5f"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:36:28.177942"
+},
+{
+  "_id": {
+    "$oid": "6809ea7207fdc5aaf8c38f31"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:38:26.611748"
+},
+{
+  "_id": {
+    "$oid": "6809ea722bc4ace5ce7f61f3"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:38:26.604215"
+},
+{
+  "_id": {
+    "$oid": "6809ea9107fdc5aaf8c38fda"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:38:57.577784"
+},
+{
+  "_id": {
+    "$oid": "6809ea912bc4ace5ce7f629c"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:38:57.577888"
+},
+{
+  "_id": {
+    "$oid": "6809ea9d2bc4ace5ce7f630c"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:39:09.575385"
+},
+{
+  "_id": {
+    "$oid": "6809ea9d07fdc5aaf8c3904a"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:39:09.734370"
+},
+{
+  "_id": {
+    "$oid": "6809eaa62bc4ace5ce7f636f"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:39:18.006197"
+},
+{
+  "_id": {
+    "$oid": "6809eaa607fdc5aaf8c390ad"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:39:18.416488"
+},
+{
+  "_id": {
+    "$oid": "6809eaf42bc4ace5ce7f655a"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:40:36.648297"
+},
+{
+  "_id": {
+    "$oid": "6809eaf407fdc5aaf8c3928a"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:40:36.955415"
+},
+{
+  "_id": {
+    "$oid": "6809eb0e2bc4ace5ce7f65f4"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:41:02.440022"
+},
+{
+  "_id": {
+    "$oid": "6809eb0f07fdc5aaf8c39324"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:41:03.873387"
+},
+{
+  "_id": {
+    "$oid": "6809eb452bc4ace5ce7f67a0"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:41:57.341513"
+},
+{
+  "_id": {
+    "$oid": "6809eb4807fdc5aaf8c394d0"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:42:00.208335"
+},
+{
+  "_id": {
+    "$oid": "6809eb532bc4ace5ce7f6800"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:42:11.493316"
+},
+{
+  "_id": {
+    "$oid": "6809ebc507fdc5aaf8c39843"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:44:05.960158"
+},
+{
+  "_id": {
+    "$oid": "6809ec7e2bc4ace5ce7f71a1"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T07:47:10.279189"
+},
+{
+  "_id": {
+    "$oid": "6809ecac07fdc5aaf8c3a0dc"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:47:56.362516"
+},
+{
+  "_id": {
+    "$oid": "6809ecbc2bc4ace5ce7f7435"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:48:12.121367"
+},
+{
+  "_id": {
+    "$oid": "6809ed8607fdc5aaf8c3a538"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:51:34.702545"
+},
+{
+  "_id": {
+    "$oid": "6809ed862bc4ace5ce7f7834"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T07:51:34.976787"
+},
+{
+  "_id": {
+    "$oid": "6809f4eb233a88a28353f524"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:23:07.490897"
+},
+{
+  "_id": {
+    "$oid": "6809f4ece9bd7cddb0eb10e2"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:23:08.513081"
+},
+{
+  "_id": {
+    "$oid": "6809f527233a88a28353f643"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:24:07.871523"
+},
+{
+  "_id": {
+    "$oid": "6809f528e9bd7cddb0eb1201"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:24:08.930058"
+},
+{
+  "_id": {
+    "$oid": "6809f535233a88a28353f682"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:24:21.631009"
+},
+{
+  "_id": {
+    "$oid": "6809f536e9bd7cddb0eb1240"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:24:22.448700"
+},
+{
+  "_id": {
+    "$oid": "6809f5a7e9bd7cddb0eb14ac"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:26:15.942725"
+},
+{
+  "_id": {
+    "$oid": "6809f5a9233a88a28353f8fb"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:26:17.513212"
+},
+{
+  "_id": {
+    "$oid": "6809f5c2e9bd7cddb0eb1560"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:26:42.126837"
+},
+{
+  "_id": {
+    "$oid": "6809f5c4233a88a28353f9af"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:26:44.890607"
+},
+{
+  "_id": {
+    "$oid": "6809f84ae9bd7cddb0eb25aa"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:37:30.841275"
+},
+{
+  "_id": {
+    "$oid": "6809f84b233a88a2835409dc"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:37:31.545604"
+},
+{
+  "_id": {
+    "$oid": "6809f88b6802ea186c214bd6"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:38:35.408192"
+},
+{
+  "_id": {
+    "$oid": "6809f88e1d9b79b49cf2b89f"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:38:38.261571"
+},
+{
+  "_id": {
+    "$oid": "6809f8966802ea186c214c0b"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:38:46.659697"
+},
+{
+  "_id": {
+    "$oid": "6809f8991d9b79b49cf2b8d4"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:38:49.101807"
+},
+{
+  "_id": {
+    "$oid": "6809f89d6802ea186c214c34"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:38:53.019401"
+},
+{
+  "_id": {
+    "$oid": "6809f89f1d9b79b49cf2b8fd"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:38:55.668973"
+},
+{
+  "_id": {
+    "$oid": "6809f8a56802ea186c214c61"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:39:01.258582"
+},
+{
+  "_id": {
+    "$oid": "6809f8a61d9b79b49cf2b92a"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:39:02.578515"
+},
+{
+  "_id": {
+    "$oid": "6809f8b36802ea186c214cac"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:39:15.947519"
+},
+{
+  "_id": {
+    "$oid": "6809f8b71d9b79b49cf2b975"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:39:19.224945"
+},
+{
+  "_id": {
+    "$oid": "6809f8ba6802ea186c214ccb"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:39:22.725073"
+},
+{
+  "_id": {
+    "$oid": "6809f8be1d9b79b49cf2b994"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:39:26.580770"
+},
+{
+  "_id": {
+    "$oid": "6809f8cc1d9b79b49cf2b9c1"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:39:40.929378"
+},
+{
+  "_id": {
+    "$oid": "6809f8f91d9b79b49cf2ba56"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:40:25.983270"
+},
+{
+  "_id": {
+    "$oid": "6809f8ffc4266d5e1aee6e16"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:40:31.895158"
+},
+{
+  "_id": {
+    "$oid": "6809f9001d9b79b49cf2ba8a"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:40:32.383735"
+},
+{
+  "_id": {
+    "$oid": "6809f904c4266d5e1aee6e4a"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:40:36.376159"
+},
+{
+  "_id": {
+    "$oid": "6809fa971d9b79b49cf2c376"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:47:19.474144"
+},
+{
+  "_id": {
+    "$oid": "6809faa61d9b79b49cf2c3b9"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:47:34.629818"
+},
+{
+  "_id": {
+    "$oid": "6809fab71d9b79b49cf2c40e"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:47:51.834048"
+},
+{
+  "_id": {
+    "$oid": "6809fac51d9b79b49cf2c44e"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:48:05.034382"
+},
+{
+  "_id": {
+    "$oid": "6809fad4c4266d5e1aee7812"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:48:20.915015"
+},
+{
+  "_id": {
+    "$oid": "6809fbb01d9b79b49cf2cac4"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:52:00.055477"
+},
+{
+  "_id": {
+    "$oid": "6809fbb31d9b79b49cf2cade"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:52:03.645959"
+},
+{
+  "_id": {
+    "$oid": "6809fbbcc4266d5e1aee7ec8"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:52:12.042995"
+},
+{
+  "_id": {
+    "$oid": "6809fbbec4266d5e1aee7ee2"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:52:14.204381"
+},
+{
+  "_id": {
+    "$oid": "6809fbbe1d9b79b49cf2cb61"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:52:14.684894"
+},
+{
+  "_id": {
+    "$oid": "6809fbc41d9b79b49cf2cba0"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:52:20.023793"
+},
+{
+  "_id": {
+    "$oid": "6809fbc9c4266d5e1aee7f65"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T08:52:25.406589"
+},
+{
+  "_id": {
+    "$oid": "6809fbcec4266d5e1aee7fa4"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T08:52:30.763052"
+},
+{
+  "_id": {
+    "$oid": "6809fe06c4266d5e1aee8b71"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:01:58.978270"
+},
+{
+  "_id": {
+    "$oid": "6809fe0cc4266d5e1aee8b8c"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:02:04.612937"
+},
+{
+  "_id": {
+    "$oid": "6809fe1a1d9b79b49cf2d898"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:02:18.539229"
+},
+{
+  "_id": {
+    "$oid": "6809fe1f1d9b79b49cf2d8b3"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:02:23.529741"
+},
+{
+  "_id": {
+    "$oid": "6809fed71d9b79b49cf2db66"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:05:27.785408"
+},
+{
+  "_id": {
+    "$oid": "6809fed7c4266d5e1aee8e86"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:05:27.785554"
+},
+{
+  "_id": {
+    "$oid": "6809fedec4266d5e1aee8ea5"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:05:34.536277"
+},
+{
+  "_id": {
+    "$oid": "6809fede1d9b79b49cf2db85"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:05:34.894291"
+},
+{
+  "_id": {
+    "$oid": "680a00e2c4266d5e1aee96f4"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:14:10.974091"
+},
+{
+  "_id": {
+    "$oid": "680a00eb1d9b79b49cf2e43f"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:14:19.895493"
+},
+{
+  "_id": {
+    "$oid": "680a00edc4266d5e1aee976a"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:14:21.934860"
+},
+{
+  "_id": {
+    "$oid": "680a011e1d9b79b49cf2e549"
+  },
+  "collection": "train/power_status",
+  "value": "0",
+  "timestamp": "2025-04-24T09:15:10.235323"
+},
+{
+  "_id": {
+    "$oid": "680a011f1d9b79b49cf2e54c"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:15:11.062751"
+},
+{
+  "_id": {
+    "$oid": "680a0214c4266d5e1aee9c29"
+  },
+  "collection": "train/power_status",
+  "value": "1",
+  "timestamp": "2025-04-24T09:19:16.820599"
+}]

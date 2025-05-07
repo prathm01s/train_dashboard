@@ -1,0 +1,608 @@
+[{
+  "_id": {
+    "$oid": "6809eb072bc4ace5ce7f65ca"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T07:40:55.185159"
+},
+{
+  "_id": {
+    "$oid": "6809eb0807fdc5aaf8c392fa"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T07:40:56.311094"
+},
+{
+  "_id": {
+    "$oid": "6809eb172bc4ace5ce7f6640"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T07:41:11.626884"
+},
+{
+  "_id": {
+    "$oid": "6809eb1807fdc5aaf8c39370"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T07:41:12.213710"
+},
+{
+  "_id": {
+    "$oid": "6809eba107fdc5aaf8c3972c"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:43:29.015214"
+},
+{
+  "_id": {
+    "$oid": "6809eba307fdc5aaf8c3974c"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:43:31.815701"
+},
+{
+  "_id": {
+    "$oid": "6809ebab2bc4ace5ce7f6a84"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:43:39.496382"
+},
+{
+  "_id": {
+    "$oid": "6809ebae2bc4ace5ce7f6aa4"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:43:42.054507"
+},
+{
+  "_id": {
+    "$oid": "6809ebcd07fdc5aaf8c39863"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:44:13.942889"
+},
+{
+  "_id": {
+    "$oid": "6809ebce2bc4ace5ce7f6b4f"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:44:14.965080"
+},
+{
+  "_id": {
+    "$oid": "6809ebd007fdc5aaf8c39873"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T07:44:16.910805"
+},
+{
+  "_id": {
+    "$oid": "6809ebd12bc4ace5ce7f6b5f"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T07:44:17.698796"
+},
+{
+  "_id": {
+    "$oid": "6809ef6d03fc112bdbaabe26"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:59:41.297190"
+},
+{
+  "_id": {
+    "$oid": "6809ef7203fc112bdbaabe43"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T07:59:46.810581"
+},
+{
+  "_id": {
+    "$oid": "6809f8ea1d9b79b49cf2ba21"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:10.215496"
+},
+{
+  "_id": {
+    "$oid": "6809f8f21d9b79b49cf2ba3b"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:18.826421"
+},
+{
+  "_id": {
+    "$oid": "6809f8f7c4266d5e1aee6de1"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:23.697641"
+},
+{
+  "_id": {
+    "$oid": "6809f8f81d9b79b49cf2ba52"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:24.600976"
+},
+{
+  "_id": {
+    "$oid": "6809f8fdc4266d5e1aee6dfb"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:29.417682"
+},
+{
+  "_id": {
+    "$oid": "6809f8fe1d9b79b49cf2ba79"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:30.765269"
+},
+{
+  "_id": {
+    "$oid": "6809f8ffc4266d5e1aee6e12"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:31.495096"
+},
+{
+  "_id": {
+    "$oid": "6809f9011d9b79b49cf2ba92"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:40:33.014792"
+},
+{
+  "_id": {
+    "$oid": "6809f902c4266d5e1aee6e39"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:34.938443"
+},
+{
+  "_id": {
+    "$oid": "6809f9041d9b79b49cf2bab8"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:36.289407"
+},
+{
+  "_id": {
+    "$oid": "6809f905c4266d5e1aee6e52"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:40:37.095901"
+},
+{
+  "_id": {
+    "$oid": "6809f9071d9b79b49cf2bad8"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:39.176342"
+},
+{
+  "_id": {
+    "$oid": "6809f908c4266d5e1aee6e78"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:40.466566"
+},
+{
+  "_id": {
+    "$oid": "6809f9091d9b79b49cf2baef"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:40:41.048648"
+},
+{
+  "_id": {
+    "$oid": "6809f90bc4266d5e1aee6e98"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:43.175709"
+},
+{
+  "_id": {
+    "$oid": "6809f90b1d9b79b49cf2bb0c"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:43.580563"
+},
+{
+  "_id": {
+    "$oid": "6809f90dc4266d5e1aee6eaf"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:40:45.094742"
+},
+{
+  "_id": {
+    "$oid": "6809f90fc4266d5e1aee6ecc"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:47.658720"
+},
+{
+  "_id": {
+    "$oid": "6809f9131d9b79b49cf2bb66"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:51.572543"
+},
+{
+  "_id": {
+    "$oid": "6809f917c4266d5e1aee6f26"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:55.714902"
+},
+{
+  "_id": {
+    "$oid": "6809f91b1d9b79b49cf2bbc4"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:40:59.593665"
+},
+{
+  "_id": {
+    "$oid": "6809f91fc4266d5e1aee6f84"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:41:03.414868"
+},
+{
+  "_id": {
+    "$oid": "6809f9221d9b79b49cf2bc1c"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:41:06.552532"
+},
+{
+  "_id": {
+    "$oid": "6809f927c4266d5e1aee6fdc"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:41:11.451581"
+},
+{
+  "_id": {
+    "$oid": "6809f9311d9b79b49cf2bcb0"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:41:21.796482"
+},
+{
+  "_id": {
+    "$oid": "6809fa1d1d9b79b49cf2c166"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:45:17.105122"
+},
+{
+  "_id": {
+    "$oid": "6809fa201d9b79b49cf2c176"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:45:20.588316"
+},
+{
+  "_id": {
+    "$oid": "6809fa241d9b79b49cf2c187"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:45:24.375244"
+},
+{
+  "_id": {
+    "$oid": "6809fa33c4266d5e1aee7540"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:45:39.309652"
+},
+{
+  "_id": {
+    "$oid": "6809fa38c4266d5e1aee7550"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:45:44.599183"
+},
+{
+  "_id": {
+    "$oid": "6809fa3dc4266d5e1aee7561"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:45:49.150682"
+},
+{
+  "_id": {
+    "$oid": "6809fa4f1d9b79b49cf2c22b"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:46:07.589202"
+},
+{
+  "_id": {
+    "$oid": "6809fa521d9b79b49cf2c238"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:46:10.968667"
+},
+{
+  "_id": {
+    "$oid": "6809fa581d9b79b49cf2c252"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:46:16.192448"
+},
+{
+  "_id": {
+    "$oid": "6809fa5b1d9b79b49cf2c261"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:46:19.600326"
+},
+{
+  "_id": {
+    "$oid": "6809fa5e1d9b79b49cf2c271"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:46:22.747597"
+},
+{
+  "_id": {
+    "$oid": "6809fa63c4266d5e1aee7605"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:46:27.033093"
+},
+{
+  "_id": {
+    "$oid": "6809fae61d9b79b49cf2c526"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:48:38.986220"
+},
+{
+  "_id": {
+    "$oid": "6809fb701d9b79b49cf2c97a"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:50:56.125648"
+},
+{
+  "_id": {
+    "$oid": "6809fb761d9b79b49cf2c9a0"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:51:02.873979"
+},
+{
+  "_id": {
+    "$oid": "6809fb781d9b79b49cf2c9a8"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:51:04.541514"
+},
+{
+  "_id": {
+    "$oid": "6809fb7e1d9b79b49cf2c9c9"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:51:10.481553"
+},
+{
+  "_id": {
+    "$oid": "6809fb87c4266d5e1aee7d7e"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:51:19.490395"
+},
+{
+  "_id": {
+    "$oid": "6809fb8ec4266d5e1aee7da4"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:51:26.455525"
+},
+{
+  "_id": {
+    "$oid": "6809fb90c4266d5e1aee7dac"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:51:28.092040"
+},
+{
+  "_id": {
+    "$oid": "6809fb98c4266d5e1aee7dcd"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:51:36.073812"
+},
+{
+  "_id": {
+    "$oid": "6809fc2c1d9b79b49cf2ce74"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:54:04.150441"
+},
+{
+  "_id": {
+    "$oid": "6809fc2d1d9b79b49cf2ce7d"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:54:05.993631"
+},
+{
+  "_id": {
+    "$oid": "6809fc301d9b79b49cf2ce8b"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:54:08.656867"
+},
+{
+  "_id": {
+    "$oid": "6809fc341d9b79b49cf2ce9d"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:54:12.315724"
+},
+{
+  "_id": {
+    "$oid": "6809fc3fc4266d5e1aee8266"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:54:23.605990"
+},
+{
+  "_id": {
+    "$oid": "6809fc41c4266d5e1aee826f"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T08:54:25.564762"
+},
+{
+  "_id": {
+    "$oid": "6809fc44c4266d5e1aee827d"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:54:28.522634"
+},
+{
+  "_id": {
+    "$oid": "6809fc47c4266d5e1aee828f"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T08:54:31.713162"
+},
+{
+  "_id": {
+    "$oid": "6809fdb9c4266d5e1aee89e9"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T09:00:41.462544"
+},
+{
+  "_id": {
+    "$oid": "6809fdbdc4266d5e1aee89fb"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T09:00:45.558510"
+},
+{
+  "_id": {
+    "$oid": "6809fdcb1d9b79b49cf2d710"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T09:00:59.076455"
+},
+{
+  "_id": {
+    "$oid": "6809fdce1d9b79b49cf2d722"
+  },
+  "collection": "env/servo_control",
+  "value": "0",
+  "timestamp": "2025-04-24T09:01:02.944769"
+},
+{
+  "_id": {
+    "$oid": "680a01ddc4266d5e1aee9b68"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T09:18:21.520472"
+},
+{
+  "_id": {
+    "$oid": "680a01f2c4266d5e1aee9bb2"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T09:18:42.385650"
+},
+{
+  "_id": {
+    "$oid": "680a01f6c4266d5e1aee9bc4"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T09:18:46.917147"
+},
+{
+  "_id": {
+    "$oid": "680a01f7c4266d5e1aee9bc5"
+  },
+  "collection": "env/servo_control",
+  "value": "30",
+  "timestamp": "2025-04-24T09:18:47.121968"
+}]
